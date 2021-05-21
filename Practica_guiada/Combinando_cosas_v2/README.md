@@ -1,0 +1,1 @@
+Trata de mejorar el código de los ejercicios 2, 3, 4 y 5. Donde realizaremos una vez la operación y luego preguntaremos si continuar con otro cálculo. Caso contrario, finaliza el programa.
