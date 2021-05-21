@@ -1,14 +1,6 @@
-## Getting Started
+Realizar un programa que al ejecutar se pueda ingresar 3 numeros enteros, para luego imprimirlos por pantalla de la siguiente manera:
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+El primer nro ingresado es: 4
+El segundo nro ingresado es: 5
+El tercer nro ingresado es: 6
 
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-## Dependency Management
-
-The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).

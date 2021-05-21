@@ -1,14 +1,3 @@
-## Getting Started
+Debemos realizar un programa que nos realizará una pregunta si queremos realizar una operación dada o si deseamos salir/terminar el programa.
+Utilizaremos en este caso una simple operación que nos pide un número y luego lo imprime.
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
-
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-## Dependency Management
-
-The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).

@@ -1,14 +1,8 @@
-## Getting Started
+Tendremos un sistema que debe clasificar el resultado de una evaluación. Como dato de entrada tendremos un entero y como resultado un String de la clasificación de la siguiente forma:
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+93 - 100 --> Excelente
+85 - 92 --> Sobresaliente
+75 - 84 --> Distinguido
+60 - 74 --> Bueno
+00 - 59 --> Desaprobado
 
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-## Dependency Management
-
-The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).

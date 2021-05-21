@@ -1,14 +1,19 @@
-## Getting Started
+Realizar un programa que dado un número de entrada entre 1 a 7, nos devuelva el dia de la semana de la siguiente forma:
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+1 - Domingo
+2 - Lunes
+3 - Martes
+4 - Miercoles
+5 - Jueves
+6 - Viernes
+7 - Sabado 
 
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-## Dependency Management
-
-The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).
+Prestemos atención a la sentencia break. 
+¿Qué sucedería si eliminamos todas esas sentencias break? 
+- Ejecutara el valor correspondiente y seguira con la ejecicion de las siguientes acciones de los distintos casos
+¿Que imprimirá si luego ejecuto el programa e ingreso el número 4?.
+- Se imprimira: 
+Miercoles
+Jueves
+Viernes
+Sabado
