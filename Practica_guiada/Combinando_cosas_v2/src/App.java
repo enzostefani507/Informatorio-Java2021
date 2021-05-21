@@ -13,16 +13,16 @@ public class App {
             int opcion = scan.nextInt();
             switch (opcion){
                 case 2:
-                    Ejercicio2();
+                    Ejercicio2(scan);
                     break;
                 case 3:
-                    Ejercicio3();
+                    Ejercicio3(scan);
                     break;
                 case 4:
-                    Ejercicio4();
+                    Ejercicio4(scan);
                     break;
                 case 5:
-                    Ejercicio5();
+                    Ejercicio5(scan);
                     break;
             }
 
@@ -33,8 +33,7 @@ public class App {
         scan.close();
     }
 
-    public static void Ejercicio2() throws Exception{
-        Scanner scan = new Scanner(System.in);
+    public static void Ejercicio2(Scanner scan) throws Exception{
         System.out.println(separador);
         System.out.println("Ejercicio2: Ingrese 3 valores y se mostraran por pantalla");
         int a = scan.nextInt();
@@ -47,10 +46,9 @@ public class App {
  
     }
 
-    public static void Ejercicio3() throws Exception {
+    public static void Ejercicio3(Scanner scan) throws Exception {
         System.out.println(separador);
         System.out.println("Ejercicio3: Ingrese una calificacion y la interpreto");
-        Scanner scan = new Scanner (System.in);
         int nota = scan.nextInt();
 
         if (nota > 92){
@@ -66,10 +64,9 @@ public class App {
         }
     }
 
-    public static void Ejercicio4() throws Exception {
+    public static void Ejercicio4(Scanner scan) throws Exception {
         System.out.println(separador);
         System.out.println("Ejercicio5: Ingrese un numero y lo relaciono con un día");
-        Scanner scan = new Scanner (System.in);
         int dia = scan.nextInt();
 
         switch(dia){
@@ -97,10 +94,9 @@ public class App {
         }
     }
 
-    public static void Ejercicio5() throws Exception {
+    public static void Ejercicio5(Scanner scan) throws Exception {
         System.out.println(separador);
         System.out.println("Ejercicio5: Ingrese un numero y se lo mostrare hasta que quiera");
-        Scanner scan = new Scanner(System.in);
         int continuar = 1;
         int nro;
         do{
