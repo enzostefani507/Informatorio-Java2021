@@ -3,4 +3,3 @@ public class HolaMundo {
         System.out.println("Hola Informatorio 2020!!");
     }
 }
-    
