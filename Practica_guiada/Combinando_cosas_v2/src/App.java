@@ -26,14 +26,14 @@ public class App {
                     break;
             }
 
-            System.out.println("Si desea presione 1, sino otro valor");
+            System.out.println(">>>Si desea continuar probando ejercicios presione 1");
             continuar = scan.nextInt();
 
         }while (continuar == 1);
         scan.close();
     }
 
-    public static void Ejercicio2(){
+    public static void Ejercicio2() throws Exception{
         Scanner scan = new Scanner(System.in);
         System.out.println(separador);
         System.out.println("Ejercicio2: Ingrese 3 valores y se mostraran por pantalla");
@@ -110,7 +110,7 @@ public class App {
             nro = scan.nextInt();
             System.out.println("El numero ingresado es" + nro);
             
-            System.out.println("Si desea presione 1, sino otro valor");
+            System.out.println("Si desea presione ingresar más coloque 1, sino otro valor");
             continuar = scan.nextInt();
         } while (continuar == 1);
         scan.close();
