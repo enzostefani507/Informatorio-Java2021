@@ -12,5 +12,6 @@ public class a_mayuscula {
             System.out.print(caracteres[i]);
         }
         System.out.println();
+        scan.close();
     }
 }
