@@ -3,6 +3,9 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class ViewFile {
+    /*
+    This class print in the terminal the file content indicate in the path
+    */
     public static void main(String args[]) throws IOException{
         String path = "/media/enzo/Datos/Informatorio/Etapa3/Java/Practica/Clase290521/data/Alumnos.txt";
 
@@ -13,6 +16,7 @@ public class ViewFile {
                 System.out.println(line);
                 line = br.readLine();
             }
+            
         }catch(IOException ioe){
             System.out.println(ioe);
         }

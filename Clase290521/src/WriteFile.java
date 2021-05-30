@@ -3,6 +3,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class WriteFile {
+    /*
+    This class write a register class instances in the file indicate in the path
+    */
     public static void main(String[] args){
         Empleado[] registrados = registerEmployee();
         writeEmployee(registrados);
@@ -39,10 +42,12 @@ public class WriteFile {
     public static void writeEmployee(Empleado[] listEmployees){
         String path = "/media/enzo/Datos/Informatorio/Etapa3/Java/Practica/Clase290521/data/Empleados.txt";
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))){
+
             for (int i = 0; i <= listEmployees.length-1; i++){
-                String line= listEmployees[i].dni+","+listEmployees[i].last_name+","+listEmployees[i].first_name;
+                String line = listEmployees[i].dni+","+listEmployees[i].last_name+","+listEmployees[i].first_name;
                 bw.write(line+"\n");
             }
+            
         }catch(IOException ioe){
             System.out.println(ioe);
         }
