@@ -13,7 +13,7 @@ public class Calculadora {
 
     public static int factorial(int numero){
         int res = numero;
-        if (numero != 1){
+        if (numero > 1){
             res = res*factorial(numero-1);
         }
         return res;
