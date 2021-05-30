@@ -14,7 +14,7 @@ public class ViewFile {
                 line = br.readLine();
             }
         }catch(IOException ioe){
-            System.out.println("Problem: "+ioe);
+            System.out.println(ioe);
         }
     }
 }
