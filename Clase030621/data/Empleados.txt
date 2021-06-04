@@ -1,0 +1,7 @@
+Carlos,Nose,20-01-1989,458.08
+Pedro,Mendez,20-02-1982,678.08
+Alberto,Josela,20-03-2009,4578.02
+Raul,Benites,20-01-1985,4.4
+Carlitos,Sanchez,20-01-1980,45678
+Mabel,Stefani,12-02-1995,12312312.34
+Enzo,Benites,01-04-1998,1231
