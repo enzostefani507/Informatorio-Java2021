@@ -52,7 +52,7 @@ public class Empleado {
         return this.getNombre()+" "+this.getApellido();
     }
 
-    public int Edad(String fecha_hoy){
+    public int getEdad(String fecha_hoy){
         DateTimeFormatter formatter= DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate hoy = LocalDate.parse(fecha_hoy,formatter);
         int dia_hoy = hoy.getDayOfMonth();

@@ -17,20 +17,20 @@ public class App {
         System.out.println("Los empleados cuyo apellido comienza con " + buscado + " son: " + BuscarApellido(buscado));
 
         //Empleado más joven
-        System.out.println("Los empleados más jovenes : " + MenorEdadEmpleados("04-06-2021"));
+        System.out.println("Los empleados más jovenes : " + getMenorEdadEmpleados("04-06-2021"));
 
         //Empleado más viejo
-        System.out.println("El empleados más viejos : " + MayorEdadEmpleados("04-06-2021"));
+        System.out.println("El empleados más viejos : " + getMayorEdadEmpleados("04-06-2021"));
 
         //Empleado que más gana
-        System.out.println("Los empleados que más ganan : " + MayorSalarioEmpleados()); 
+        System.out.println("Los empleados que más ganan : " + getMayorSalarioEmpleados()); 
 
         //Empleado que menos gana
-        System.out.println("Los empleado que menos ganan : " + MenorSalarioEmpleados()); 
+        System.out.println("Los empleado que menos ganan : " + getMenorSalarioEmpleados()); 
 
         //Imprimri en orden alfabetico
-        OrdenarApellido();
-        OrdenarNombre();
+        SetOrdenarApellido();
+        SetOrdenarNombre();
 
          /*
         Extras utilizaos
@@ -42,12 +42,12 @@ public class App {
     
     }
 
-    public static void OrdenarApellido(){
+    public static void SetOrdenarApellido(){
         empleados.sort(Comparator.comparing(Empleado::getApellido));
         System.out.println(empleados);
     }
 
-    public static void OrdenarNombre(){
+    public static void SetOrdenarNombre(){
         empleados.sort(Comparator.comparing(Empleado::getNombre));
         System.out.println(empleados);
     }
@@ -84,7 +84,7 @@ public class App {
         return encontrados;
     }    
 
-    public static double MayorSueldo(){
+    public static double getMayorSueldo(){
         double mayor_sueldo = empleados.get(0).getSueldo();
         for (Empleado e: empleados){
             if (e.getSueldo() > mayor_sueldo){
@@ -94,7 +94,7 @@ public class App {
         return mayor_sueldo;
     }
 
-    public static double MenorSueldo(){
+    public static double getMenorSueldo(){
         double menor_sueldo = empleados.get(0).getSueldo();
         for (Empleado e: empleados){
             if (e.getSueldo() < menor_sueldo){
@@ -104,29 +104,29 @@ public class App {
         return menor_sueldo;
     }
 
-    public static int MayorEdad(String fecha){
-        int mayor_edad = empleados.get(0).Edad(fecha);
+    public static int getMayorEdad(String fecha){
+        int mayor_edad = empleados.get(0).getEdad(fecha);
         for (Empleado e: empleados){
-            if (e.Edad(fecha) > mayor_edad){
-                mayor_edad = e.Edad(fecha);
+            if (e.getEdad(fecha) > mayor_edad){
+                mayor_edad = e.getEdad(fecha);
             }
         }
         return mayor_edad;
     }
 
-    public static int MenorEdad(String fecha){
-        int menor_edad = empleados.get(0).Edad(fecha);
+    public static int getMenorEdad(String fecha){
+        int menor_edad = empleados.get(0).getEdad(fecha);
         for (Empleado e: empleados){
-            if (e.Edad(fecha) < menor_edad){
-                menor_edad = e.Edad(fecha);
+            if (e.getEdad(fecha) < menor_edad){
+                menor_edad = e.getEdad(fecha);
             }
         }
         return menor_edad;
     }
 
-    public static List<Empleado> MenorSalarioEmpleados(){
+    public static List<Empleado> getMenorSalarioEmpleados(){
         List<Empleado> seleccion = new ArrayList<>();
-        double menor_salario = MenorSueldo();
+        double menor_salario = getMenorSueldo();
         for (Empleado e: empleados){
             if (e.getSueldo() == menor_salario){
                 seleccion.add(e);
@@ -135,9 +135,9 @@ public class App {
         return seleccion;   
     }
 
-    public static List<Empleado> MayorSalarioEmpleados(){
+    public static List<Empleado> getMayorSalarioEmpleados(){
         List<Empleado> seleccion = new ArrayList<>();
-        double mayor_salario = MayorSueldo();
+        double mayor_salario = getMayorSueldo();
         for (Empleado e: empleados){
             if (e.getSueldo() == mayor_salario){
                 seleccion.add(e);
@@ -146,22 +146,22 @@ public class App {
         return seleccion;   
     }
 
-    public static List<Empleado> MenorEdadEmpleados(String Fecha){
+    public static List<Empleado> getMenorEdadEmpleados(String Fecha){
         List<Empleado> seleccion = new ArrayList<>();
-        double menor_edad = MenorEdad(Fecha);
+        double menor_edad = getMenorEdad(Fecha);
         for (Empleado e: empleados){
-            if (e.Edad(Fecha) == menor_edad){
+            if (e.getEdad(Fecha) == menor_edad){
                 seleccion.add(e);
             }
         }
         return seleccion;   
     }
 
-    public static List<Empleado> MayorEdadEmpleados(String Fecha){
+    public static List<Empleado> getMayorEdadEmpleados(String Fecha){
         List<Empleado> seleccion = new ArrayList<>();
-        double mayor_edad = MayorEdad(Fecha);
+        double mayor_edad = getMayorEdad(Fecha);
         for (Empleado e: empleados){
-            if (e.Edad(Fecha) == mayor_edad){
+            if (e.getEdad(Fecha) == mayor_edad){
                 seleccion.add(e);
             }
         }
