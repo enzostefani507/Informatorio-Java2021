@@ -1,3 +1,6 @@
+## App
+Contiene todos los metodos para tratar los empleados registrados 
+
 ## Empleado
 Tiene
  - nombre
