@@ -27,7 +27,7 @@ public class Producto {
     @Column(nullable = false,scale = 2)
     private double precio_unitario;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String código_inventario;
 
     public Long getId() {
