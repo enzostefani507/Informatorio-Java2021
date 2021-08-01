@@ -10,6 +10,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -26,10 +29,12 @@ public class Carrito {
     @Temporal(TemporalType.DATE)
     private Calendar fecha_creacion;
 
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="usuario_id", nullable=false)
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "producto",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    
+    @ManyToMany
     private List<Producto> productos;
 
     @Column(nullable = false)
@@ -42,7 +47,7 @@ public class Carrito {
     public long getId() {
         return this.id;
     }
-
+    
     public Usuario getUsuario() {
         return this.usuario;
     }
@@ -51,6 +56,7 @@ public class Carrito {
         this.usuario = usuario;
     }
 
+    
     public List<Producto> getProductos() {
         return this.productos;
     }
@@ -65,5 +71,6 @@ public class Carrito {
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
-
+    
+    public Carrito(){}
 }
