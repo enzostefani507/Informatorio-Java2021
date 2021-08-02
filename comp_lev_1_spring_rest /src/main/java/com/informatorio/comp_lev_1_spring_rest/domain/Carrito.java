@@ -18,6 +18,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Carrito {
 
@@ -29,6 +32,7 @@ public class Carrito {
     @Temporal(TemporalType.DATE)
     private Calendar fecha_creacion;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="usuario_id", nullable=false)
     private Usuario usuario;
@@ -63,6 +67,10 @@ public class Carrito {
 
     public void setProductos(List<Producto> productos) {
         this.productos = productos;
+    }
+
+    public void addProducto(Producto producto) {
+        this.productos.add(producto);
     }
 
     public Boolean getEstado() {

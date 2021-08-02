@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Usuario {
 
@@ -28,7 +30,8 @@ public class Usuario {
     
     private String direccion;
 
-    @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Carrito> carritoList;
 
     @Column(updatable = false, nullable = false)

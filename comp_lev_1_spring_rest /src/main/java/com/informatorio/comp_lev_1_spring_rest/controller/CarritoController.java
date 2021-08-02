@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.informatorio.comp_lev_1_spring_rest.domain.Carrito;
+import com.informatorio.comp_lev_1_spring_rest.domain.Producto;
 
 @RestController
 @RequestMapping("/carrito")
@@ -35,11 +36,11 @@ public class CarritoController {
     public void insertar(@RequestBody Carrito carrito){
         carritoRepository.save(carrito);
     }
-     
+
     @PutMapping(value = "/{id}")
-    public Carrito cambiarEstado(@PathVariable Long id){
-        Carrito carritoActual = carritoRepository.findById(id).get(); 
-        carritoActual.setEstado(false);
+    public Carrito addProducto(@PathVariable Long id, Producto producto) {
+        Carrito carritoActual = carritoRepository.findById(id).get();
+        carritoActual.addProducto(producto);
         return carritoRepository.save(carritoActual);
     }
 
