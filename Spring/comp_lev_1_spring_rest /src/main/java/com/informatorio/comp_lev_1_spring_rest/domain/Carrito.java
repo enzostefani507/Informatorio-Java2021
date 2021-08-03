@@ -6,13 +6,20 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Carrito {
@@ -25,10 +32,13 @@ public class Carrito {
     @Temporal(TemporalType.DATE)
     private Calendar fecha_creacion;
 
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="usuario_id", nullable=false)
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "producto",cascade = CascadeType.ALL)
+    
+    @ManyToMany
     private List<Producto> productos;
 
     @Column(nullable = false)
@@ -41,7 +51,7 @@ public class Carrito {
     public long getId() {
         return this.id;
     }
-
+    
     public Usuario getUsuario() {
         return this.usuario;
     }
@@ -50,6 +60,7 @@ public class Carrito {
         this.usuario = usuario;
     }
 
+    
     public List<Producto> getProductos() {
         return this.productos;
     }
@@ -58,11 +69,16 @@ public class Carrito {
         this.productos = productos;
     }
 
+    public void addProducto(Producto producto) {
+        this.productos.add(producto);
+    }
+
     public Boolean getEstado() {
         return this.estado;
     }
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
-
+    
+    public Carrito(){}
 }

@@ -1,5 +1,5 @@
 package com.informatorio.comp_lev_1_spring_rest.controller;
-import com.informatorio.comp_lev_1_spring_rest.repository.UsuarioRepository;
+import com.informatorio.comp_lev_1_spring_rest.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,37 +12,37 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 
-import com.informatorio.comp_lev_1_spring_rest.domain.Usuario;
+import com.informatorio.comp_lev_1_spring_rest.domain.Producto;
 
 @RestController
-@RequestMapping("/usuarios")
-public class UsuarioController {
+@RequestMapping("/productos")
+public class ProductoController {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private ProductoRepository ProductoRepository;
 
     @GetMapping(value = "/{id}")
-    public Optional<Usuario> ver(@PathVariable Long id){
-        return usuarioRepository.findById(id);
+    public Optional<Producto> ver(@PathVariable Long id){
+        return ProductoRepository.findById(id);
     }
 
     @GetMapping("")
-    public List<Usuario> listar(){
-        return (List<Usuario>) usuarioRepository.findAll();
+    public List<Producto> listar(){
+        return (List<Producto>) ProductoRepository.findAll();
     }
 
     @PostMapping("")
-    public void insertar(@RequestBody Usuario usuario){
-        usuarioRepository.save(usuario);
+    public void insertar(@RequestBody Producto producto){
+        ProductoRepository.save(producto);
     }
      
     @PutMapping("")
-    public void modificar(@RequestBody Usuario usuario){
-        usuarioRepository.save(usuario);
+    public void modificar(@RequestBody Producto producto){
+        ProductoRepository.save(producto);
     }
 
     @DeleteMapping(value = "/{id}")
     public void eliminar(@PathVariable Long id){
-        usuarioRepository.deleteById(id);
+        ProductoRepository.deleteById(id);
     }
 }

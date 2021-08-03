@@ -1,14 +1,19 @@
 package com.informatorio.comp_lev_1_spring_rest.domain;
 
 import java.util.Calendar;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Usuario {
@@ -24,6 +29,10 @@ public class Usuario {
     private String apellido;
     
     private String direccion;
+
+    @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Carrito> carritoList;
 
     @Column(updatable = false, nullable = false)
     @Temporal(TemporalType.DATE)
@@ -65,4 +74,13 @@ public class Usuario {
         this.fecha_Alta = fecha_Alta;
     }
 
+    public List<Carrito> getCarritoList() {
+        return this.carritoList;
+    }
+
+    public void setCarritoList(List<Carrito> carritoList) {
+        this.carritoList = carritoList;
+    }
+
+    public Usuario(){}
 }
