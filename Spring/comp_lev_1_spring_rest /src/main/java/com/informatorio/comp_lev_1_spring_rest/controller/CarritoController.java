@@ -41,7 +41,7 @@ public class CarritoController {
         carritoRepository.save(carrito);
     }
     
-    @PutMapping(value = "/",params = {"carrito","produto"})
+    @PutMapping(value = "/",params = {"carrito","producto"})
     public Carrito addProducto(@RequestParam Long carrito, @RequestParam Long producto ) {
         Carrito carritoActual = carritoRepository.findById(carrito).get();
         Producto productoSeleccionado = productoRepository.findById(producto).get();
