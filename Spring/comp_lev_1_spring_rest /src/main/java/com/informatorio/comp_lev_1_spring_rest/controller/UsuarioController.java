@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
@@ -21,8 +22,8 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @GetMapping(value = "/{id}")
-    public Optional<Usuario> ver(@PathVariable Long id){
+    @GetMapping(value = "/",params="id")
+    public Optional<Usuario> ver(@RequestParam Long id){
         return usuarioRepository.findById(id);
     }
 
