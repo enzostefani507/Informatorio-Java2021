@@ -3,6 +3,8 @@ package com.informatorio.comercio.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -19,6 +21,15 @@ public class Producto {
 
     @Column(nullable = false)
     private Double precio_unitario;
+
+     @ManyToMany(mappedBy = "productos")
+     private List<Carrito> carritos = new ArrayList<>();
+
+    public List<Carrito> getCarritos() {return carritos;}
+
+    public void addCarrito(Carrito carrito) {this.getCarritos().add(carrito);}
+
+    public void removeCarrito(Carrito carrito){this.getCarritos().remove(carrito);}
 
     public Long getId() {
         return id;
