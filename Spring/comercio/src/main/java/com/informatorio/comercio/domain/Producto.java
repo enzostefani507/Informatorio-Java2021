@@ -22,39 +22,33 @@ public class Producto {
     @Column(nullable = false)
     private Double precio_unitario;
 
-     @ManyToMany(mappedBy = "productos")
-     private List<Carrito> carritos = new ArrayList<>();
+    @ManyToMany(mappedBy = "productos")
+    private List<Carrito> carritos = new ArrayList<>();
 
+    //Getters
     public List<Carrito> getCarritos() {return carritos;}
-
-    public void addCarrito(Carrito carrito) {this.getCarritos().add(carrito);}
-
-    public void removeCarrito(Carrito carrito){this.getCarritos().remove(carrito);}
-
     public Long getId() {
         return id;
     }
-
+    public String getDescripcion() {
+        return descripcion;
+    }
+    public Double getPrecio_unitario() {
+        return precio_unitario;
+    }
     public String getNombre() {
         return nombre;
     }
 
+    //Setters
+    public void addCarrito(Carrito carrito) {this.getCarritos().add(carrito);}
+    public void removeCarrito(Carrito carrito){this.getCarritos().remove(carrito);}
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-    public Double getPrecio_unitario() {
-        return precio_unitario;
-    }
-
     public void setPrecio_unitario(Double precio_unitario) {
         this.precio_unitario = precio_unitario;
     }
