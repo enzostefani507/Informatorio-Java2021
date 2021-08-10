@@ -16,6 +16,7 @@ public class Producto {
         - precio_unitario
         - carritos
         - codigo_inventario
+        - categoria
      */
 
     @Id
@@ -42,23 +43,21 @@ public class Producto {
     @NotBlank(message = "Debe ingresar el codigo del producto.")
     private String codigo_inventario;
 
+    @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
+    private Categoria categoria;
+
     //Getters
     public List<Carrito> getCarritos() {return carritos;}
     public String getCodigo_inventario() {return codigo_inventario;}
-    public String getDescripcion() {
-        return descripcion;
-    }
-    public String getNombre() {
-        return nombre;
-    }
-    public Double getPrecio_unitario() {
-        return precio_unitario;
-    }
-    public Long getId() {
-        return id;
-    }
+    public String getDescripcion() {return descripcion;}
+    public String getNombre() {return nombre;}
+    public Double getPrecio_unitario() {return precio_unitario;}
+    public Long getId() {return id;}
+    public Categoria getCategoria() {return categoria;}
 
     //Setters
+    public void setCategoria(Categoria categoria) {this.categoria = categoria;}
     public void addCarrito(Carrito carrito) {this.getCarritos().add(carrito);}
     public void removeCarrito(Carrito carrito){this.getCarritos().remove(carrito);}
     public void setNombre(String nombre) {
