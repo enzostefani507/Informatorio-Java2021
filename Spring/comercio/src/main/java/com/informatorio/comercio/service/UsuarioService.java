@@ -14,10 +14,6 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public void UsuarioRepository(UsuarioRepository usuarioRepository){
-        this.usuarioRepository = usuarioRepository;
-    };
-
     public static Date creacion(){
         return Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
     };
