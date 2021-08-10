@@ -15,7 +15,8 @@ public class Producto {
         - descripcion
         - precio_unitario
         - carritos
-    */
+        - codigo_inventario
+     */
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,15 +32,19 @@ public class Producto {
     @Size(min = 5, message = "La descripcion debe tener minimamente 5 caracteres")
     private String descripcion;
 
-    @Column(nullable = false)
-    @NotBlank(message = "Debe ingresar un precui unitario para el producto.")
+    @Column(nullable = false,precision = 2, scale = 0)
     private Double precio_unitario;
 
     @ManyToMany(mappedBy = "productos")
     private List<Carrito> carritos = new ArrayList<>();
 
+    @Column(nullable = false, unique = true)
+    @NotBlank(message = "Debe ingresar el codigo del producto.")
+    private String codigo_inventario;
+
     //Getters
     public List<Carrito> getCarritos() {return carritos;}
+    public String getCodigo_inventario() {return codigo_inventario;}
     public String getDescripcion() {
         return descripcion;
     }
