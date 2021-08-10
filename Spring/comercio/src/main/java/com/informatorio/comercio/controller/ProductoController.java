@@ -27,6 +27,11 @@ public class ProductoController {
         return productoRepository.getById(id);
     }
 
+    @GetMapping(value = "/p/{nombre}")
+    public List<Producto> buscarPorNombre(@PathVariable("nombre") String nombre){
+        return productoRepository.findByNombreStartingWith(nombre);
+    }
+
     @PutMapping(value = "/producto/{id}")
     public Producto modificarProducto(@PathVariable("id") Long id, @RequestBody  Producto producto){
         Producto prod = productoRepository.getById(id);
