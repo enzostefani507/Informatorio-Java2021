@@ -1,19 +1,13 @@
 package com.informatorio.comp_lev_1_spring_rest.domain;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Usuario {
@@ -30,9 +24,9 @@ public class Usuario {
     
     private String direccion;
 
-    @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<Carrito> carritoList;
+    @OneToMany(mappedBy = "usuario",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Carrito> carritoList = new ArrayList<>();;
 
     @Column(updatable = false, nullable = false)
     @Temporal(TemporalType.DATE)

@@ -1,4 +1,5 @@
 package com.informatorio.comp_lev_1_spring_rest.controller;
+import com.informatorio.comp_lev_1_spring_rest.repository.ProductoRepository;
 import com.informatorio.comp_lev_1_spring_rest.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,7 +17,7 @@ import java.util.Optional;
 import com.informatorio.comp_lev_1_spring_rest.domain.Usuario;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/usuario")
 public class UsuarioController {
 
     @Autowired
@@ -33,13 +34,13 @@ public class UsuarioController {
     }
 
     @PostMapping("")
-    public void insertar(@RequestBody Usuario usuario){
-        usuarioRepository.save(usuario);
+    public Usuario insertar(@RequestBody Usuario usuario){
+        return usuarioRepository.save(usuario);
     }
-     
+
     @PutMapping("")
-    public void modificar(@RequestBody Usuario usuario){
-        usuarioRepository.save(usuario);
+    public Usuario modificar(@RequestBody Usuario usuario){
+        return usuarioRepository.save(usuario);
     }
 
     @DeleteMapping(value = "/{id}")

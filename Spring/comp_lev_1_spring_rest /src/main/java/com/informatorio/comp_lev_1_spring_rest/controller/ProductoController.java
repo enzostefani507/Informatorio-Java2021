@@ -15,7 +15,7 @@ import java.util.Optional;
 import com.informatorio.comp_lev_1_spring_rest.domain.Producto;
 
 @RestController
-@RequestMapping("/productos")
+@RequestMapping("/producto")
 public class ProductoController {
 
     @Autowired
@@ -32,8 +32,8 @@ public class ProductoController {
     }
 
     @PostMapping("")
-    public void insertar(@RequestBody Producto producto){
-        ProductoRepository.save(producto);
+    public Producto insertar(@RequestBody Producto producto){
+        return ProductoRepository.save(producto);
     }
      
     @PutMapping("")

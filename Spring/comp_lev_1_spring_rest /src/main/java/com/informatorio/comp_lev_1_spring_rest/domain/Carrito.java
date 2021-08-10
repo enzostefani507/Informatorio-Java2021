@@ -1,5 +1,6 @@
 package com.informatorio.comp_lev_1_spring_rest.domain;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -18,8 +19,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Carrito {
@@ -32,14 +35,15 @@ public class Carrito {
     @Temporal(TemporalType.DATE)
     private Calendar fecha_creacion;
 
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name="usuario_id", nullable=false)
+    //@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="usuario")
+    @JsonBackReference
     private Usuario usuario;
 
-    
-    @ManyToMany
-    private List<Producto> productos;
+    @JsonManagedReference
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Producto> productos = new ArrayList<>();
 
     @Column(nullable = false)
     private Boolean estado;
@@ -70,7 +74,8 @@ public class Carrito {
     }
 
     public void addProducto(Producto producto) {
-        this.productos.add(producto);
+        productos.add(producto);
+        producto.getCarritos().add(this);
     }
 
     public Boolean getEstado() {

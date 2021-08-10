@@ -1,5 +1,6 @@
 package com.informatorio.comp_lev_1_spring_rest.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -29,6 +30,17 @@ public class Producto {
 
     @Column(unique = true)
     private String código_inventario;
+
+    public List<Carrito> getCarritos() {
+        return carritos;
+    }
+
+    public void setCarritos(List<Carrito> carritos) {
+        this.carritos = carritos;
+    }
+
+    @ManyToMany(mappedBy = "productos")
+    private List<Carrito> carritos = new ArrayList<>();
 
     public Long getId() {
         return this.id;
