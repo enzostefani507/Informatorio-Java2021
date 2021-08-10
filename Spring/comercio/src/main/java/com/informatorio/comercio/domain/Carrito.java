@@ -1,17 +1,22 @@
 package com.informatorio.comercio.domain;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.informatorio.comercio.service.CarritoService;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Carrito {
+
+    /*
+        Esta clase se encarga de almacenar los productos y relacionarlos con un cliente en particular para
+        almacenar los mismos para comprarlos, solo hay un carrito activo a la vez por usuario, se desactiva luego
+        de realizar la compra o luego de crear uno nuevo.
+    */
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,9 +46,7 @@ public class Carrito {
     //Setters
     public void addProducto(Producto producto){this.getProductos().add(producto);producto.addCarrito(this);}
     public void removeProducto(Producto producto){this.getProductos().remove(producto);producto.removeCarrito(this);}
-    public void setId(Long id) {this.id = id;}
     public void setEstado(Boolean estado) {this.estado = estado;}
     public void setUsuario(Usuario usuario) {this.usuario = usuario;}
-    public void setFecha_creacion(Date fecha_creacion) {this.fecha_creacion = fecha_creacion;}
 
 }
