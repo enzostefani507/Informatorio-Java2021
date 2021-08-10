@@ -1,10 +1,8 @@
 package com.informatorio.comercio.controller;
-
 import com.informatorio.comercio.domain.Producto;
 import com.informatorio.comercio.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController()
