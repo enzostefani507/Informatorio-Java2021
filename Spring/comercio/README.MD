@@ -1,4 +1,4 @@
-#Requerimientos
+# Requerimientos
 - Java 11
 - Mysql 8
 - Maven 3.6
@@ -72,8 +72,10 @@ precio_unitario       |Si|
 carritos        |Si|      
 codigo_inventario|Si|
 categoria|SI|
-#Endpoints
-##Usuario
+
+# Endpoints
+
+## Usuario
 * GET                         `/usuario`
   Obtiene todos los usuarios
 * GET                         `/usuario/{id}`
@@ -85,7 +87,7 @@ categoria|SI|
 * DELETE            `/usuario/{id}`
     Borra el usuario correpondiente al id indicado 
 
-##Producto
+## Producto
 * GET                         `/producto`
   Obtiene todos los productos
 * GET                         `/producto/{id}`
@@ -101,7 +103,7 @@ categoria|SI|
 * DELETE            `/producto/{id}`
   Borra el usuario correpondiente al id indicado
 
-#Carrito
+## Carrito
 * GET                         `/carrito`
   Obtiene todos los carrito
 * GET                         `/carrito/{id}`
