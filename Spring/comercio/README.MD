@@ -2,7 +2,8 @@
 - Java 11
 - Mysql 8
 - Maven 3.6
-#Instrucciones de uso
+
+# Instrucciones de uso
 Clonar el repo
 
     git clone https://github.com/enzostefani507/Informatorio-Java2021.git
