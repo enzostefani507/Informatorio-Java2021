@@ -1,0 +1,427 @@
+{
+	"info": {
+		"_postman_id": "5784643a-d7f6-4d22-8848-90831f698b86",
+		"name": "java",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Comercio",
+			"item": [
+				{
+					"name": "CRUD Usuario",
+					"item": [
+						{
+							"name": "Eliminar usuario",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\":\"1\",\n    \"nombre\":\"aaaa\",\n    \"apellido\":\"vvvv\",\n    \"direccion\":\"Las palmas\",\n    \"fecha_Alta\":\"2020-01-05\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/usuario/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear usuario",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombre\":\"Enzo\",\n    \"apellido\":\"Benites\",\n    \"direccion\": \"San Lorenzo\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/usuario",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lista usuarios",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:8080/usuario",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver usuario",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:8080/usuario/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modificar usuario",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombre\": \"Enzo\",\n    \"apellido\": \"AAAA\",\n    \"direccion\": \"San Lorenzo\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/usuario/3",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "CRUD Productos",
+					"item": [
+						{
+							"name": "Crear producto",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombre\":\"fasdgsdffgfadsf\",\n    \"descripcion\":\"aparato para oficina\",\n    \"precio_unitario\":12.22,\n    \"codigo_inventario\":\"tywtetsdfsdafasdfdsq-2\",\n    \"categoria\":\"Jugos\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/producto",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"producto"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modificar producto",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombre\":\"pc\",\n    \"descripcion\":\"aparato para oficina\",\n    \"precio_unitario\":400\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/producto/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"producto",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver productos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/producto",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"producto"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver producto",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/producto/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"producto",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "buscar por nombre",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/producto/buscaN/?nombre=aa",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"producto",
+										"buscaN",
+										""
+									],
+									"query": [
+										{
+											"key": "nombre",
+											"value": "aa"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "buscar por categoria",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/producto/buscaC/?id=9",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"producto",
+										"buscaC",
+										""
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "9"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "CRUD Carrito",
+					"item": [
+						{
+							"name": "Crear carrito",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/carrito/nuevo/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"carrito",
+										"nuevo",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver carrito",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/carrito",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"carrito"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Borrar carrito",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\":\"1\",\n    \"fecha_creacion\":\"2020-05-05\",\n    \"usuario\":{\n        \"id\": 1,\n        \"nombre\": \"aaaa\",\n        \"apellido\": \"vvvv\",\n        \"direccion\": \"Las palmas\",\n        \"carritoList\": [],\n        \"fecha_Alta\": \"2020-01-05T03:00:00.000+00:00\"\n    },\n    \"productos\":[\n        {\n            \"id\":\"1\",\n            \"nombre\":\"rapida\",\n            \"descripcion\":\"disponible\",\n            \"precio_unitario\":\"12\",\n            \"código_inventario\":\"asdf\"\n        }\n    ],\n    \"estado\":\"true\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/carrito/3",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"carrito",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addProducto",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/carritoadd/4/producto/6",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"carritoadd",
+										"4",
+										"producto",
+										"6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "borrarProducto",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/carritodel/4/producto/6",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"carritodel",
+										"4",
+										"producto",
+										"6"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -21,6 +21,7 @@ Ejecutar
         
     mvn spring-boot:run
 #Modelos
+Los endpoints se encuentran cargadas en java.postman_collection.json 
 ##Usuario
 Esta clase representa a los clientes del comercio, y tiene los siguientes atributos. 
   
@@ -104,9 +105,9 @@ categoria|SI|
   Obtiene el usuario correpondiente al id indicado
 * POST            `/carrito/nuevo/{id}`
   Crea un carrito nuevo y vacio para el usuario con el id indicado, si tenia un carrito anterior activo lo desactiva y deja activado el nuevo
-* PUT            `/carrito/{id_carrito}/producto/{id_producto}`
+* PUT            `/carritoadd/{id_carrito}/producto/{id_producto}`
   Añade al carrito con id {id_carrito} el producto con id {id_producto}
-* PUT            `/carrito/{id_carrito}/producto/{id_producto}`
+* PUT            `/carritodel/{id_carrito}/producto/{id_producto}`
  Saca del carrito con id {id_carrito} el producto con id {id_producto}
 * DELETE            `/carrito/{id}`
   Borra el carrito correpondiente al id indicado
