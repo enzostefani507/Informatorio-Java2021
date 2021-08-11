@@ -44,4 +44,10 @@ public class ProductoController {
     public List<Producto> buscarPorCategoria(@RequestParam(value="categoria") Categoria categoria){
         return productoRepository.findByCategoria(categoria);
     }
+
+    @DeleteMapping(value = "producto/{id}")
+    public void borrarProducto(@PathVariable("id") Long id){
+        Producto producto = productoRepository.getById(id);
+        productoRepository.delete(producto);
+    }
 }
