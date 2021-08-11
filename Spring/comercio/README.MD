@@ -6,9 +6,11 @@
 Clonar el repo
 
     git clone https://github.com/enzostefani507/Informatorio-Java2021.git
+    
 Cambiarte de rama:
    
     git checkout spring
+    
 Dirigirte a la ruta indicada
 
     cd /Spring/comercio
@@ -20,6 +22,7 @@ Dicho archivo se encuentra en la siguiente ruta: src/main/resources
 Ejecutar
         
     mvn spring-boot:run
+    
 #Modelos
 Los endpoints se encuentran cargadas en java.postman_collection.json 
 ##Usuario
