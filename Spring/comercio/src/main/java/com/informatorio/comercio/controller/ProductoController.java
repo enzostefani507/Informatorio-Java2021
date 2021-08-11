@@ -1,4 +1,5 @@
 package com.informatorio.comercio.controller;
+import com.informatorio.comercio.domain.Categoria;
 import com.informatorio.comercio.domain.Producto;
 import com.informatorio.comercio.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ public class ProductoController {
         return productoRepository.getById(id);
     }
 
-    @GetMapping(value = "/producto/nombre/{nombre}")
-    public List<Producto> buscarPorNombre(@PathVariable("nombre") String nombre){
+    @GetMapping(value = "/producto/buscaN/")
+    public List<Producto> buscarPorNombre(@RequestParam(value="nombre") String nombre){
         return productoRepository.findByNombreStartingWith(nombre);
     }
 
@@ -37,5 +38,10 @@ public class ProductoController {
         prod.setNombre(producto.getNombre());
         prod.setPrecio_unitario(producto.getPrecio_unitario());
         return productoRepository.save(prod);
+    }
+
+    @GetMapping(value = "/producto/buscaC/")
+    public List<Producto> buscarPorCategoria(@RequestParam(value="categoria") Categoria categoria){
+        return productoRepository.findByCategoria(categoria);
     }
 }
