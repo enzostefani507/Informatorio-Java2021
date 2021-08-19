@@ -39,8 +39,10 @@ public class Usuario {
     @Temporal(TemporalType.DATE)
     private Date fecha_creacion = UsuarioService.creacion();
 
-    @Column(nullable = false, updatable = true)
-    private String direccion;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="direccion_id", referencedColumnName = "id")
+    @JsonIgnoreProperties("usuario")
+    private Direccion direccion;
 
     @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("usuario")
@@ -49,13 +51,13 @@ public class Usuario {
     //Getters
     public String getNombre() {return nombre;}
     public String getApellido() {return apellido;}
-    public String getDireccion() {return direccion;}
+    public Direccion getDireccion() {return direccion;}
     public List<Carrito> getCarritos() {return carritos;}
     public Long getId() {return id;}
     public Date getFecha_creacion() {return fecha_creacion;}
 
     //Setters
-    public void setDireccion(String direccion) {this.direccion = direccion;}
+    public void setDireccion(Direccion direccion) {this.direccion = direccion;}
     public void setNombre(String nombre) {this.nombre = nombre;}
     public void setApellido(String apellido) {this.apellido = apellido;}
 }
