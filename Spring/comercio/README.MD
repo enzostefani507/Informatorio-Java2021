@@ -1,8 +1,8 @@
-#Requerimientos
+# Requerimientos
 - Java 11
 - Mysql 8
 - Maven 3.6
-#Instrucciones de uso
+# Instrucciones de uso
 Clonar el repo
 
     git clone https://github.com/enzostefani507/Informatorio-Java2021.git
@@ -20,7 +20,7 @@ Dicho archivo se encuentra en la siguiente ruta: src/main/resources
 Ejecutar
         
     mvn spring-boot:run
-#Modelos
+# Modelos
 Los endpoints se encuentran cargadas en java.postman_collection.json 
 ##Usuario
 Esta clase representa a los clientes del comercio, y tiene los siguientes atributos. 
@@ -37,7 +37,8 @@ apellido        |Si|
 fecha_creacion  |no|     
 direccion       |Si|    
 carritos        |Si|
-##Carrito
+
+## Carrito
 Esta clase se encarga de almacenar los productos y relacionarlos con un cliente en particular para
 almacenar los mismos para comprarlos, solo hay un carrito activo a la vez por usuario, se desactiva luego
 de realizar la compra o luego de crear uno nuevo.
@@ -51,8 +52,9 @@ Atributo    | Modificable
 estado          |Si|       
 fecha_creacion  |no|     
 usuarios       |Si|
-carritos        |Si|      
-##Producto
+carritos        |Si|    
+
+## Producto
 Esta clase representa los productos del comercio y tiene los siguientes atributos 
 
         - nombre
@@ -69,8 +71,10 @@ precio_unitario       |Si|
 carritos        |Si|      
 codigo_inventario|Si|
 categoria|SI|
-#Endpoints
-##Usuario
+
+# Endpoints
+
+##  Usuario
 * GET                         `/usuario`
   Obtiene todos los usuarios
 * GET                         `/usuario/{id}`
@@ -82,7 +86,7 @@ categoria|SI|
 * DELETE            `/usuario/{id}`
     Borra el usuario correpondiente al id indicado 
 
-##Producto
+## Producto
 * GET                         `/producto`
   Obtiene todos los productos
 * GET                         `/producto/{id}`
@@ -98,7 +102,7 @@ categoria|SI|
 * DELETE            `/producto/{id}`
   Borra el usuario correpondiente al id indicado
 
-#Carrito
+# Carrito
 * GET                         `/carrito`
   Obtiene todos los carrito
 * GET                         `/carrito/{id}`
