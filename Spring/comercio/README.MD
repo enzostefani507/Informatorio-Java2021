@@ -69,23 +69,6 @@ precio_unitario       |Si|
 carritos        |Si|      
 codigo_inventario|Si|
 categoria|SI|
-
-##Direccion
-Esta clase representa la direccion de los usuarios
-
-        - numero
-        - calle
-        - barrio
-        - ciudad
-        - usuario
-Atributo    | Modificable
- ---- | ----- 
-numero          |Si|       
-calle  |si|     
-barrio       |Si|
-usuario        |no|      
-
-
 #Endpoints
 ##Usuario
 * GET                         `/usuario`
