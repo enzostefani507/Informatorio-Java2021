@@ -32,20 +32,21 @@ public class Carrito {
     @ManyToOne(fetch = FetchType.LAZY)
     private Usuario usuario;
 
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("carritos")
-    private List<Producto> productos = new ArrayList<>();
+    @OneToMany(mappedBy = "carrito",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Detalle> detalle = new ArrayList<>();
 
     //Getters
     public Long getId() {return id;}
     public Boolean getEstado() {return estado;}
     public Usuario getUsuario() {return usuario;}
     public Date getFecha_creacion() {return fecha_creacion;}
-    public List<Producto> getProductos() {return productos;}
+    public List<Detalle> getDetalle() {return detalle;}
 
     //Setters
-    public void addProducto(Producto producto){this.getProductos().add(producto);producto.addCarrito(this);}
-    public void removeProducto(Producto producto){this.getProductos().remove(producto);producto.removeCarrito(this);}
+    public void addDetalle(Detalle detalle){this.getDetalle().add(detalle);}
+    public void removeDetalle(Detalle detalle){
+        this.getDetalle().remove(detalle);
+    }
     public void setEstado(Boolean estado) {this.estado = estado;}
     public void setUsuario(Usuario usuario) {this.usuario = usuario;}
 

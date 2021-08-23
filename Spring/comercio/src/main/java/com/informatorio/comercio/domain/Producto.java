@@ -36,9 +36,6 @@ public class Producto {
     @Column(nullable = false,precision = 2, scale = 0)
     private Double precio_unitario;
 
-    @ManyToMany(mappedBy = "productos")
-    private List<Carrito> carritos = new ArrayList<>();
-
     @Column(nullable = false, unique = true)
     @NotBlank(message = "Debe ingresar el codigo del producto.")
     private String codigo_inventario;
@@ -47,8 +44,10 @@ public class Producto {
     @Enumerated(value = EnumType.STRING)
     private Categoria categoria;
 
+    @OneToOne(mappedBy = "producto")
+    private Detalle detalle;
+
     //Getters
-    public List<Carrito> getCarritos() {return carritos;}
     public String getCodigo_inventario() {return codigo_inventario;}
     public String getDescripcion() {return descripcion;}
     public String getNombre() {return nombre;}
@@ -58,11 +57,7 @@ public class Producto {
 
     //Setters
     public void setCategoria(Categoria categoria) {this.categoria = categoria;}
-    public void addCarrito(Carrito carrito) {this.getCarritos().add(carrito);}
-    public void removeCarrito(Carrito carrito){this.getCarritos().remove(carrito);}
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    public void setNombre(String nombre) {this.nombre = nombre;}
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
