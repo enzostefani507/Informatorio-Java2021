@@ -51,8 +51,21 @@ Atributo    | Modificable
  ---- | ----- 
 estado          |Si|       
 fecha_creacion  |no|     
-usuarios       |Si|
-carritos        |Si|    
+usuario     |Si|
+detalle        |Si|    
+
+## Detalle
+Esta clase contiene representa la cantidad a comprar de un determinado producto y la contiene un carrito
+
+    - producto
+    - cantidad
+    - carrito
+
+Atributo    | Modificable
+ ---- | ----- 
+producto          |no|       
+cantidad  |Si|     
+carrito     |no|
 
 ## Producto
 Esta clase representa los productos del comercio y tiene los siguientes atributos 
