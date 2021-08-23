@@ -46,7 +46,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"nombre\":\"Enzo\",\n    \"apellido\":\"Benites\",\n    \"direccion\": \"San Lorenzo\"\n}",
+									"raw": "{\n    \"nombre\":\"Lucas\",\n    \"apellido\":\"Benites\",\n    \"direccion\": {\n        \"numero\":\"123\",\n        \"calle\":\"san lorenzo\",\n        \"barrio\":\"manuel\",\n        \"ciudad\":\"La leonesa\"\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -124,7 +124,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"nombre\": \"Enzo\",\n    \"apellido\": \"AAAA\",\n    \"direccion\": \"San Lorenzo\"\n}",
+									"raw": "{\n    \"nombre\": \"Enzo\",\n    \"apellido\": \"AAAA\",\n    \"fecha_creacion\": \"2021-08-19\",\n    \"direccion\": {\n        \"numero\": \"666\",\n        \"calle\": \"san lorenzo\",\n        \"barrio\": \"manuel\",\n        \"ciudad\": \"La leonesa\"\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -132,14 +132,14 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8080/usuario/3",
+									"raw": "localhost:8080/usuario/1",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"usuario",
-										"3"
+										"1"
 									]
 								}
 							},
@@ -157,7 +157,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"nombre\":\"fasdgsdffgfadsf\",\n    \"descripcion\":\"aparato para oficina\",\n    \"precio_unitario\":12.22,\n    \"codigo_inventario\":\"tywtetsdfsdafasdfdsq-2\",\n    \"categoria\":\"Jugos\"\n}\n",
+									"raw": "{\n    \"nombre\":\"PasdfC\",\n    \"descripcion\":\"apasdfarato para oficina\",\n    \"precio_unitario\":132.22,\n    \"codigo_inventario\":\"ASfa-2\",\n    \"categoria\":\"Jugos\"\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -337,13 +337,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/carrito",
+									"raw": "localhost:8080/carrito/5",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"carrito"
+										"carrito",
+										"5"
 									]
 								}
 							},
@@ -383,16 +384,16 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/carritoadd/4/producto/6",
+									"raw": "localhost:8080/carrito/5/addproducto/3",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"carritoadd",
-										"4",
-										"producto",
-										"6"
+										"carrito",
+										"5",
+										"addproducto",
+										"3"
 									]
 								}
 							},
@@ -404,16 +405,76 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/carritodel/4/producto/6",
+									"raw": "localhost:8080/carrito/4/delproducto/3",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"carritodel",
+										"carrito",
 										"4",
-										"producto",
-										"6"
+										"delproducto",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "decrementarProducto",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/carrito/2/decproducto/3",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"carrito",
+										"2",
+										"decproducto",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "incrementarProducto",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/carrito/5/incproducto/3",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"carrito",
+										"5",
+										"incproducto",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver carritos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/carrito",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"carrito"
 									]
 								}
 							},
