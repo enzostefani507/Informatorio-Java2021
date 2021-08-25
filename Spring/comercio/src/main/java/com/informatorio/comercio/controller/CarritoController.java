@@ -50,6 +50,13 @@ public class CarritoController {
         return carritoRepository.getById(id);
     }
 
+    @PutMapping(value = "/carrito/{id_carrito}/close")
+    public Carrito cerrarCarrito(@PathVariable("id_carrito") Long id_carrito){
+        Carrito carrito = carritoRepository.getById(id_carrito);
+        carrito.setEstado(false);
+        return carritoRepository.save(carrito);
+    }
+
     @DeleteMapping(value = "/carrito/{id}")
     public void borrarCarrito(@PathVariable("id") Long id){
         carritoRepository.deleteById(id);
