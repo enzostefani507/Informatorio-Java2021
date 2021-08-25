@@ -56,76 +56,80 @@ public class CarritoController {
     }
 
     @PutMapping(value = "/carrito/{id_carrito}/addproducto/{id_producto}")
-    public Carrito addProducto(@PathVariable("id_carrito") Long id_carrito,@PathVariable("id_producto") Long id_producto){
+    public Detalle addProducto(@PathVariable("id_carrito") Long id_carrito,@PathVariable("id_producto") Long id_producto){
         Carrito carrito = carritoRepository.getById(id_carrito);
-        Producto producto = productoRepository.getById(id_producto);
-        Detalle detalle = new Detalle();
-        detalle.setProducto(producto);
-        detalle.setCarrito(carrito);
-        Boolean producto_existente = false;
-        List<Detalle> detalles_del_carrito = carrito.getDetalle();
-        for (Detalle d: detalles_del_carrito ){
-            if (d.getProducto().equals(producto)){
-                producto_existente = true;
-                break;
+        if (carrito.getEstado()) {
+            Producto producto = productoRepository.getById(id_producto);
+            Detalle detalle = new Detalle();
+            detalle.setProducto(producto);
+            detalle.setCarrito(carrito);
+            Boolean producto_existente = false;
+            List<Detalle> detalles_del_carrito = carrito.getDetalle();
+            for (Detalle d : detalles_del_carrito) {
+                if (d.getProducto().equals(producto)) {
+                    producto_existente = true;
+                    return d;
+                }
             }
-        }
-        if (!producto_existente) {
             carrito.addDetalle(detalle);
+            carritoRepository.save(carrito);
+            return detalle;
         }
-        carritoRepository.save(carrito);
-        return carrito;
+        return null;
     }
 
     @PutMapping(value = "/carrito/{id_carrito}/decproducto/{id_producto}")
-    public Carrito decremetarProducto(@PathVariable("id_carrito") Long id_carrito, @PathVariable("id_producto") Long id_producto){
+    public Detalle decremetarProducto(@PathVariable("id_carrito") Long id_carrito, @PathVariable("id_producto") Long id_producto){
         Carrito carrito = carritoRepository.getById(id_carrito);
-        Producto producto = productoRepository.getById(id_producto);
-        List<Detalle> detalles_del_carrito = carrito.getDetalle();
-        for (Detalle d: detalles_del_carrito ){
-            if (d.getProducto().equals(producto)){
-                if (d.getCantidad()==1){
-                    carrito.removeDetalle(d);
-                    detalleRepository.save(d);
-                }else {
-                    d.decCantidad(1);
-                    break;
+        if (carrito.getEstado()) {
+            Producto producto = productoRepository.getById(id_producto);
+            List<Detalle> detalles_del_carrito = carrito.getDetalle();
+            for (Detalle d : detalles_del_carrito) {
+                if (d.getProducto().getId().equals(producto.getId())) {
+                    if (d.getCantidad() == 1) {
+                        carrito.removeDetalle(d);
+                        detalleRepository.save(d);
+                        break;
+                    } else {
+                        d.decCantidad();
+                        return detalleRepository.save(d);
+                    }
                 }
-
             }
         }
-        carritoRepository.save(carrito);
-        return carrito;
+        return null;
     }
 
     @PutMapping(value = "/carrito/{id_carrito}/incproducto/{id_producto}")
-    public Carrito incremetarProducto(@PathVariable("id_carrito") Long id_carrito, @PathVariable("id_producto") Long id_producto){
+    public Detalle incremetarProducto(@PathVariable("id_carrito") Long id_carrito, @PathVariable("id_producto") Long id_producto){
         Carrito carrito = carritoRepository.getById(id_carrito);
-        Producto producto = productoRepository.getById(id_producto);
-        List<Detalle> detalles_del_carrito = carrito.getDetalle();
-        for (Detalle d: detalles_del_carrito ){
-            if (d.getProducto().equals(producto)){
-                d.incCantidad(1);
-                detalleRepository.save(d);
-                carritoRepository.save(carrito);
+        if (carrito.getEstado()) {
+            Producto producto = productoRepository.getById(id_producto);
+            List<Detalle> detalles_del_carrito = carrito.getDetalle();
+            for (Detalle d : detalles_del_carrito) {
+                if (d.getProducto().getId().equals(producto.getId())) {
+                    d.incCantidad();
+                    return detalleRepository.save(d);
+                }
             }
         }
-        return carrito;
+        return null;
     }
 
     @PutMapping(value = "/carrito/{id_carrito}/delproducto/{id_producto}")
-    public Carrito delProducto(@PathVariable("id_carrito") Long id_carrito, @PathVariable("id_producto") Long id_producto){
+    public Detalle delProducto(@PathVariable("id_carrito") Long id_carrito, @PathVariable("id_producto") Long id_producto){
         Carrito carrito = carritoRepository.getById(id_carrito);
-        Producto producto = productoRepository.getById(id_producto);
-        List<Detalle> detalles_del_carrito = carrito.getDetalle();
-        for (Detalle d: detalles_del_carrito ){
-            if (d.getProducto().equals(producto)){
-                carrito.removeDetalle(d);
-                detalleRepository.delete(d);
-                break;
+        if (carrito.getEstado()) {
+            Producto producto = productoRepository.getById(id_producto);
+            List<Detalle> detalles_del_carrito = carrito.getDetalle();
+            for (Detalle d : detalles_del_carrito) {
+                if (d.getProducto().getId().equals(producto.getId())) {
+                    carrito.removeDetalle(d);
+                    detalleRepository.delete(d);
+                    return d;
+                }
             }
         }
-        carritoRepository.save(carrito);
-        return carrito;
+        return null;
     }
 }

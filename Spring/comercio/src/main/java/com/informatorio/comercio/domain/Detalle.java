@@ -18,7 +18,7 @@ public class Detalle {
     @JoinColumn(name = "producto", referencedColumnName = "id")
     private Producto producto;
 
-    @Column(nullable = false,updatable = false)
+    @Column(nullable = false,updatable = true)
     private Integer cantidad;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -32,8 +32,8 @@ public class Detalle {
     //Setters
     public void setProducto(Producto producto) {this.producto = producto;}
     public void setCarrito(Carrito carrito) {this.carrito = carrito;}
-    public void incCantidad(Integer cantidad) {this.cantidad += cantidad;}
-    public void decCantidad(Integer cantidad) {this.cantidad -= cantidad;}
+    public void incCantidad() {this.cantidad += 1;}
+    public void decCantidad() {this.cantidad -= 1;}
 
     public Detalle() {
         this.cantidad = 1;
