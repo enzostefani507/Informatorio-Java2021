@@ -51,8 +51,21 @@ Atributo    | Modificable
  ---- | ----- 
 estado          |Si|       
 fecha_creacion  |no|     
-usuarios       |Si|
-carritos        |Si|    
+usuario     |Si|
+detalle        |Si|    
+
+## Detalle
+Esta clase contiene representa la cantidad a comprar de un determinado producto y la contiene un carrito
+
+    - producto
+    - cantidad
+    - carrito
+
+Atributo    | Modificable
+ ---- | ----- 
+producto          |no|       
+cantidad  |Si|     
+carrito     |no|
 
 ## Producto
 Esta clase representa los productos del comercio y tiene los siguientes atributos 
@@ -109,9 +122,13 @@ categoria|SI|
   Obtiene el usuario correpondiente al id indicado
 * POST            `/carrito/nuevo/{id}`
   Crea un carrito nuevo y vacio para el usuario con el id indicado, si tenia un carrito anterior activo lo desactiva y deja activado el nuevo
-* PUT            `/carritoadd/{id_carrito}/producto/{id_producto}`
-  Añade al carrito con id {id_carrito} el producto con id {id_producto}
-* PUT            `/carritodel/{id_carrito}/producto/{id_producto}`
- Saca del carrito con id {id_carrito} el producto con id {id_producto}
+* PUT            `/carrito/{id_carrito}/addproducto/{id_producto}`
+  Añade un nuevo detalle con id al carrito con {id_carrito} con cantidad 1 para el producto de {id_producto}
+* PUT            `/carrito/{id_carrito}/delproducto/{id_producto}`
+ Borra el detalle con id al carrito con {id_carrito}
+* PUT            `/carrito/{id_carrito}/incproducto/{id_producto}`
+ Incrementa la cantidad en el detalle que contiene al producto con {id_producto} sobre el carrito con {id_carrito}
+* PUT            `/carrito/{id_carrito}/decproducto/{id_producto}`
+ Decrementa la cantidad en el detalle que contiene al producto con {id_producto} sobre el carrito con {id_carrito}
 * DELETE            `/carrito/{id}`
   Borra el carrito correpondiente al id indicado
