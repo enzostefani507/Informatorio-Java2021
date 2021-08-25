@@ -6,6 +6,5 @@ public enum Estado {
     */
 
     Confirmada,
-    Cancelada,
-    Procesando,
+    Cancelada
 }
