@@ -2,8 +2,6 @@ package com.informatorio.comercio.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.informatorio.comercio.service.CarritoService;
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

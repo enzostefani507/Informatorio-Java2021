@@ -48,6 +48,10 @@ public class Usuario {
     @JsonIgnoreProperties("usuario")
     private List<Carrito> carritos = new ArrayList<>();
 
+    @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
+    private Rol rol;
+
     //Getters
     public String getNombre() {return nombre;}
     public String getApellido() {return apellido;}
@@ -55,9 +59,11 @@ public class Usuario {
     public List<Carrito> getCarritos() {return carritos;}
     public Long getId() {return id;}
     public Date getFecha_creacion() {return fecha_creacion;}
+    public Rol getRol() {return  rol;}
 
     //Setters
     public void setDireccion(Direccion direccion) {this.direccion = direccion;}
     public void setNombre(String nombre) {this.nombre = nombre;}
     public void setApellido(String apellido) {this.apellido = apellido;}
+    public void setRol(Rol rol) {this.rol = rol;}
 }

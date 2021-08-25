@@ -1,7 +1,5 @@
 package com.informatorio.comercio.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 
 @Entity

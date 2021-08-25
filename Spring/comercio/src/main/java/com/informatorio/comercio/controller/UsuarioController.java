@@ -12,9 +12,7 @@ public class UsuarioController {
     private UsuarioRepository usuarioRepository;
 
     @PostMapping(value = "/usuario")
-    public Usuario crearUsuario(@RequestBody Usuario usuario){
-        return usuarioRepository.save(usuario);
-    }
+    public Usuario crearUsuario(@RequestBody Usuario usuario){return usuarioRepository.save(usuario);}
 
     @GetMapping(value = "/usuario")
     public List<Usuario> verUsuarios(){
