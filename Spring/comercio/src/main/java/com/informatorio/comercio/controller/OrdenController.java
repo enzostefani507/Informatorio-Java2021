@@ -3,12 +3,15 @@ package com.informatorio.comercio.controller;
 import com.informatorio.comercio.domain.*;
 import com.informatorio.comercio.repository.CarritoRepository;
 import com.informatorio.comercio.repository.OrdenRepository;
+import com.informatorio.comercio.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.informatorio.comercio.domain.Estado.Cancelada;
 import static com.informatorio.comercio.domain.Estado.Confirmada;
+import static com.informatorio.comercio.domain.Rol.Comerciante;
 
 @RestController
 public class OrdenController {
@@ -18,6 +21,9 @@ public class OrdenController {
 
     @Autowired
     private CarritoRepository carritoRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     @GetMapping(value = "/orden")
     public List<Orden> verOrdenes(){
@@ -48,6 +54,17 @@ public class OrdenController {
             }
             carrito.setEstado(false);
             carritoRepository.save(carrito);
+            return ordenRepository.save(orden);
+        }
+        return null;
+    }
+
+    @PutMapping(value = "usuario/{id_usuario}/orden/{id_carrito}/close")
+    public Orden cancelarOrden(@PathVariable("id_carrito") Long id_carrito, @PathVariable("id_usuario") Long id_usuario){
+        Orden orden = ordenRepository.getById(id_carrito);
+        Usuario usuario = usuarioRepository.getById(id_usuario);
+        if ((usuario.getRol()==Comerciante) && (orden.getEstado()==Confirmada)){
+            orden.setEstado(Cancelada);
             return ordenRepository.save(orden);
         }
         return null;

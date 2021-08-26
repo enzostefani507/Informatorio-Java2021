@@ -57,4 +57,7 @@ public class Orden {
     public void setTipo(Tipo tipo) {this.tipo = tipo;}
     public void setNumero(Integer numero) {this.numero = numero;}
 
+    //Getters
+    public Estado getEstado() { return this.estado;}
+
 }
