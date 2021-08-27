@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Random;
 
 import static com.informatorio.comercio.domain.Estado.Cancelada;
 import static com.informatorio.comercio.domain.Estado.Confirmada;
 import static com.informatorio.comercio.domain.Rol.Comerciante;
+import static java.lang.Math.random;
 
 @RestController
 public class OrdenController {
@@ -42,6 +44,10 @@ public class OrdenController {
             orden.setCarrito_id(id_carrito);
             orden.setEstado(Confirmada);
             orden.setUsuario(carrito.getUsuario());
+            Random random = new Random();
+            Long numero = carrito.getUsuario().getId()*carrito.getId()*random.nextInt();
+            Orden orden_existe = ordenRepository.getById(numero);
+            orden.setNumero(numero);
             List<Detalle> detalles_del_carrito = carrito.getDetalle();
             for  (Detalle d : detalles_del_carrito) {
                 Linea l = new Linea();
