@@ -1,12 +1,18 @@
 package com.informatorio.comercio.controller;
 import com.informatorio.comercio.domain.Usuario;
+import com.informatorio.comercio.repository.DireccionRepository;
 import com.informatorio.comercio.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController()
 public class UsuarioController {
+
+    @Autowired
+    private DireccionRepository direccionRepository;
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -45,5 +51,15 @@ public class UsuarioController {
         user.setPassword(usuario.pwd());
         user.setEmail(usuario.getEmail());
         return usuarioRepository.save(user);
+    }
+
+    @GetMapping(value = "/usuario/direccion")
+    public List<Usuario> usuariosDeCiudad(@RequestParam String ciudad){
+        return usuarioRepository.getByDireccionCiudad(ciudad);
+    }
+
+    @GetMapping(value = "/usuario/direccion/resistencia")
+    public List<Usuario> usuariosDeResistencia(){
+        return usuarioRepository.getByDireccionCiudad("Resistencia");
     }
 }
