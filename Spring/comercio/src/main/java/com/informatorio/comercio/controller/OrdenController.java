@@ -40,7 +40,7 @@ public class OrdenController {
     @PostMapping(value = "/ordenadd/{id_carrito}")
     public Orden crearOrden(@PathVariable("id_carrito") Long id_carrito,@RequestBody Orden orden){
         Carrito carrito = carritoRepository.getById(id_carrito);
-        if (carrito.getEstado()) {
+        if (carrito.getEstado() & (carrito.getDetalle().size()>=1)) {
             orden.setCarrito_id(id_carrito);
             orden.setEstado(Confirmada);
             orden.setUsuario(carrito.getUsuario());
