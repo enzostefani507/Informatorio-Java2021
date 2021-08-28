@@ -26,7 +26,7 @@ public class ProductoController {
         return productoRepository.getById(id);
     }
 
-    @GetMapping(value = "/producto/buscaN/")
+    @GetMapping(value = "/producto/buscar/nombre/exact")
     public List<Producto> buscarPorNombre(@RequestParam(value="nombre") String nombre){
         return productoRepository.findByNombreStartingWith(nombre);
     }
@@ -37,6 +37,11 @@ public class ProductoController {
         prod.setDescripcion(producto.getDescripcion());
         prod.setNombre(producto.getNombre());
         prod.setPrecio_unitario(producto.getPrecio_unitario());
+        prod.setContenido(producto.getContenido());
+        prod.setPublicado(producto.getPublicado());
+        prod.setCategoria(producto.getCategoria());
+        prod.setCategoria(producto.getCategoria());
+        prod.setCodigo_inventario(producto.getCodigo_inventario());
         return productoRepository.save(prod);
     }
 
@@ -49,5 +54,10 @@ public class ProductoController {
     public void borrarProducto(@PathVariable("id") Long id){
         Producto producto = productoRepository.getById(id);
         productoRepository.delete(producto);
+    }
+
+    @GetMapping(value = "producto/buscar/nombre/aprox")
+    public List<Producto> buscarProductoPorCadenaContenidaEnNombre(@RequestParam String nombre){
+        return productoRepository.findByNombreContaining(nombre);
     }
 }

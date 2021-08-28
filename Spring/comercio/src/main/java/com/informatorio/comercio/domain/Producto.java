@@ -83,4 +83,5 @@ public class Producto {
     }
     public void setPublicado(Boolean publicado) { this.publicado = publicado;}
     public void setContenido(String contenido){ this.contenido = contenido;}
+    public void setCodigo_inventario(String cod) { this.codigo_inventario = cod;}
 }
