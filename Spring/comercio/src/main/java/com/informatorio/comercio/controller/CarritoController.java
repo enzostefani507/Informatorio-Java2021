@@ -32,12 +32,11 @@ public class CarritoController {
     private ProductoRepository productoRepository;
 
     @PostMapping(value = "/carrito/nuevo/{id}")
-    public Carrito crearCarrito(@PathVariable("id") Long id){
-        Carrito carr = new Carrito();
+    public Carrito crearCarrito(@PathVariable("id") Long id, @RequestBody Carrito carrito){
         Usuario user = usuarioRepository.getById(id);
-        carr.setUsuario(user);
+        carrito.setUsuario(user);
         nuevo_carrito(user);
-        return carritoRepository.save(carr);
+        return carritoRepository.save(carrito);
     }
 
     @GetMapping(value = "/carrito")

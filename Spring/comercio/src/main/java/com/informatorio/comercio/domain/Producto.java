@@ -1,9 +1,13 @@
 package com.informatorio.comercio.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.informatorio.comercio.service.UsuarioService;
+import org.w3c.dom.Text;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -47,13 +51,26 @@ public class Producto {
     @OneToOne(mappedBy = "producto")
     private Detalle detalle;
 
+    @Column(nullable = false,updatable = false)
+    @Temporal(TemporalType.DATE)
+    private Date fecha_creacion = UsuarioService.creacion();
+
+    @Column(nullable = false)
+    private Boolean publicado;
+
+    @Column(nullable = false)
+    private String contenido;
+
     //Getters
     public String getCodigo_inventario() {return codigo_inventario;}
+    public Date getFecha_creacion() {return fecha_creacion;}
     public String getDescripcion() {return descripcion;}
     public String getNombre() {return nombre;}
     public Double getPrecio_unitario() {return precio_unitario;}
     public Long getId() {return id;}
     public Categoria getCategoria() {return categoria;}
+    public Boolean getPublicado() {return publicado;}
+    public String getContenido() {return contenido;}
 
     //Setters
     public void setCategoria(Categoria categoria) {this.categoria = categoria;}
@@ -64,4 +81,6 @@ public class Producto {
     public void setPrecio_unitario(Double precio_unitario) {
         this.precio_unitario = precio_unitario;
     }
+    public void setPublicado(Boolean publicado) { this.publicado = publicado;}
+    public void setContenido(String contenido){ this.contenido = contenido;}
 }

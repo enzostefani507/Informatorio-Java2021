@@ -1,8 +1,6 @@
 package com.informatorio.comercio.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.informatorio.comercio.service.CarritoService;
 
 import javax.persistence.*;
@@ -51,6 +49,12 @@ public class Orden {
     @Enumerated(value = EnumType.STRING)
     private Estado estado;
 
+    @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
+    private Origen origen;
+
+    @Column(nullable = false, length=200)
+    private String observacion;
 
     //Setters
     public void setUsuario(Usuario usuario) {this.usuario = usuario;}
@@ -59,9 +63,12 @@ public class Orden {
     public void setEstado(Estado estado) {this.estado = estado;}
     public void setTipo(Tipo tipo) {this.tipo = tipo;}
     public void setNumero(Long numero) {this.numero = numero;}
+    public void setOrigen(Origen origen) { this.origen = origen;}
+    public void setObservacion(String observacion) {this.observacion = observacion;}
 
     //Getters
-    public Estado getEstado() { return this.estado;}
+    public Estado getEstado() { return estado;}
+    public String getObservacion() { return observacion;}
     public Long getId() {return id;}
     public Long getUsuarioId(){return usuario.getId();}
     @JsonIgnore
@@ -71,4 +78,13 @@ public class Orden {
     public Date getFecha_creacion() {return fecha_creacion;}
     public Tipo getTipo() {return tipo;}
     public Long getNumero() {return numero;}
+    public Origen getOrigen() {return origen;}
+    @Transient
+    public Double getCostoTotal(){
+        Double total = 0.0;
+        for ( Linea l : this.getLinea()){
+            total = l.getSubTotal() + total;
+        }
+        return total;
+    }
 }

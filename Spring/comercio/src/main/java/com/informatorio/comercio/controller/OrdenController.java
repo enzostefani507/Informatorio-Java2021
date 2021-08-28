@@ -44,6 +44,7 @@ public class OrdenController {
             orden.setCarrito_id(id_carrito);
             orden.setEstado(Confirmada);
             orden.setUsuario(carrito.getUsuario());
+            orden.setObservacion(orden.getObservacion());
             Random random = new Random();
             Long numero = carrito.getUsuario().getId()*carrito.getId()*random.nextInt();
             Orden orden_existe = ordenRepository.getById(numero);

@@ -30,6 +30,8 @@ public class Linea {
     public Long getProducto() {return producto_id;}
     public Integer getCantidad() {return cantidad;}
     public Double getPrecio() {return precio;}
+    @Transient
+    public Double getSubTotal() {return precio*cantidad;}
 
     //Setters
     public void setProducto_id(Long producto_id) {this.producto_id = producto_id;}

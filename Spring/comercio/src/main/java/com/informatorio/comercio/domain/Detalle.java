@@ -28,6 +28,8 @@ public class Detalle {
     public Long getId() {return id;}
     public Producto getProducto() {return producto;}
     public Integer getCantidad() {return cantidad;}
+    @Transient
+    public Double getSubTotal() {return producto.getPrecio_unitario()*cantidad;}
 
     //Setters
     public void setProducto(Producto producto) {this.producto = producto;}

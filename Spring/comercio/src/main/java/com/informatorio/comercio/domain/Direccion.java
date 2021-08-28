@@ -20,6 +20,9 @@ public class Direccion {
     @Column(nullable = false, updatable = true)
     private String ciudad;
 
+    @Column(nullable = false, updatable = true)
+    private String provincia;
+
     @OneToOne(mappedBy = "direccion")
     private Usuario usuario;
 
@@ -30,6 +33,7 @@ public class Direccion {
     public String getCalle() {return calle;}
     public String getBarrio() {return barrio;}
     public String getCiudad() {return ciudad;}
+    public String getProvincia() {return provincia;}
 
     //Setters
     public void setNumero(String numero) {this.numero = numero;}
@@ -37,4 +41,5 @@ public class Direccion {
     public void setBarrio(String barrio) {this.barrio = barrio;}
     public void setCiudad(String ciudad) {this.ciudad = ciudad;}
     public void setUsuario(Usuario usuario) {this.usuario = usuario;}
+    public void setProvincia(String provincia) {this.provincia = provincia;}
 }
