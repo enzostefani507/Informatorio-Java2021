@@ -40,7 +40,7 @@ public class OrdenController {
     @PostMapping(value = "/ordenadd/{id_carrito}")
     public Orden crearOrden(@PathVariable("id_carrito") Long id_carrito,@RequestBody Orden orden){
         Carrito carrito = carritoRepository.getById(id_carrito);
-        if (carrito.getEstado() & (carrito.getDetalle().size()>=1)) {
+        if (carrito.getEstado() && (carrito.getDetalle().size()>=1)) {
             orden.setCarrito_id(id_carrito);
             orden.setEstado(Confirmada);
             orden.setUsuario(carrito.getUsuario());
@@ -68,12 +68,18 @@ public class OrdenController {
 
     @PutMapping(value = "usuario/{id_usuario}/orden/{id_carrito}/close")
     public Orden cancelarOrden(@PathVariable("id_carrito") Long id_carrito, @PathVariable("id_usuario") Long id_usuario){
-        Orden orden = ordenRepository.getById(id_carrito);
+        Orden orden = ordenRepository.getById(id_carrito);  
         Usuario usuario = usuarioRepository.getById(id_usuario);
         if ((usuario.getRol()==Comerciante) && (orden.getEstado()==Confirmada)){
             orden.setEstado(Cancelada);
             return ordenRepository.save(orden);
         }
         return null;
+    }
+
+    @DeleteMapping(value = "/orden/{id}")
+    public void borrarOrden(@PathVariable("id") Long id){
+        Orden orden =  ordenRepository.getById(id);
+        ordenRepository.delete(orden);
     }
 }
