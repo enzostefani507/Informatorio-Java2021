@@ -50,10 +50,14 @@ public class CarritoController {
     }
 
     @PutMapping(value = "/carrito/{id_carrito}/close")
-    public Carrito cerrarCarrito(@PathVariable("id_carrito") Long id_carrito){
+    public List<Detalle> cerrarCarrito(@PathVariable("id_carrito") Long id_carrito){
         Carrito carrito = carritoRepository.getById(id_carrito);
-        carrito.setEstado(false);
-        return carritoRepository.save(carrito);
+        if (carrito.getDetalle().size()>=1) {
+            carrito.setEstado(false);
+            carritoRepository.save(carrito);
+            return carrito.getDetalle();
+        }
+        return null;
     }
 
     @DeleteMapping(value = "/carrito/{id}")
