@@ -32,12 +32,12 @@ public class OrdenController {
         return  ordenRepository.findAll();
     }
 
-    @GetMapping(value = "/orden/{id}")
-    public Orden verOrden(@PathVariable("id") Long id){
-        return ordenRepository.getById(id);
+    @GetMapping(value = "/orden/{id_orden}")
+    public Orden verOrden(@PathVariable("id_orden") Long id_orden){
+        return ordenRepository.getById(id_orden);
     }
 
-    @PostMapping(value = "/ordenadd/{id_carrito}")
+    @PostMapping(value = "/orden/{id_carrito}")
     public Orden crearOrden(@PathVariable("id_carrito") Long id_carrito,@RequestBody Orden orden){
         Carrito carrito = carritoRepository.getById(id_carrito);
         if (carrito.getEstado() && (carrito.getDetalle().size()>=1)) {
@@ -77,9 +77,9 @@ public class OrdenController {
         return null;
     }
 
-    @DeleteMapping(value = "/orden/{id}")
-    public void borrarOrden(@PathVariable("id") Long id){
-        Orden orden =  ordenRepository.getById(id);
+    @DeleteMapping(value = "/orden/{id_orden}")
+    public void borrarOrden(@PathVariable("id_orden") Long id_orden){
+        Orden orden =  ordenRepository.getById(id_orden);
         ordenRepository.delete(orden);
     }
 

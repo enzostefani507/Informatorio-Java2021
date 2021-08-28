@@ -31,9 +31,9 @@ public class CarritoController {
     @Autowired
     private ProductoRepository productoRepository;
 
-    @PostMapping(value = "/carrito/nuevo/{id}")
-    public Carrito crearCarrito(@PathVariable("id") Long id, @RequestBody Carrito carrito){
-        Usuario user = usuarioRepository.getById(id);
+    @PostMapping(value = "/usuario/{id_usuario}/carrito")
+    public Carrito crearCarrito(@PathVariable("id_usuario") Long id_usuario, @RequestBody Carrito carrito){
+        Usuario user = usuarioRepository.getById(id_usuario);
         carrito.setUsuario(user);
         nuevo_carrito(user);
         return carritoRepository.save(carrito);
@@ -44,12 +44,12 @@ public class CarritoController {
         return carritoRepository.findAll();
     }
 
-    @GetMapping(value = "/carrito/{id}")
-    public Carrito verCarrito(@PathVariable("id") Long id){
-        return carritoRepository.getById(id);
+    @GetMapping(value = "/carrito/{id_carrito}")
+    public Carrito verCarrito(@PathVariable("id_carrito") Long id_carrito){
+        return carritoRepository.getById(id_carrito);
     }
 
-    @PutMapping(value = "/carrito/{id_carrito}/close")
+    @PutMapping(value = "/carrito/{id_carrito}/estado")
     public List<Detalle> cerrarCarrito(@PathVariable("id_carrito") Long id_carrito){
         Carrito carrito = carritoRepository.getById(id_carrito);
         if (carrito.getDetalle().size()>=1) {
@@ -60,12 +60,12 @@ public class CarritoController {
         return null;
     }
 
-    @DeleteMapping(value = "/carrito/{id}")
-    public void borrarCarrito(@PathVariable("id") Long id){
-        carritoRepository.deleteById(id);
+    @DeleteMapping(value = "/carrito/{id_carrito}")
+    public void borrarCarrito(@PathVariable("id_carrito") Long id_carrito){
+        carritoRepository.deleteById(id_carrito);
     }
 
-    @PutMapping(value = "/carrito/{id_carrito}/addproducto/{id_producto}")
+    @PutMapping(value = "/carrito/{id_carrito}/producto/{id_producto}")
     public Detalle addProducto(@PathVariable("id_carrito") Long id_carrito,@PathVariable("id_producto") Long id_producto){
         Carrito carrito = carritoRepository.getById(id_carrito);
         if (carrito.getEstado()) {
@@ -88,7 +88,7 @@ public class CarritoController {
         return null;
     }
 
-    @PutMapping(value = "/carrito/{id_carrito}/decproducto/{id_producto}")
+    @PutMapping(value = "/carrito/{id_carrito}/producto/{id_producto}/resta")
     public Detalle decremetarProducto(@PathVariable("id_carrito") Long id_carrito, @PathVariable("id_producto") Long id_producto){
         Carrito carrito = carritoRepository.getById(id_carrito);
         if (carrito.getEstado()) {
@@ -110,7 +110,7 @@ public class CarritoController {
         return null;
     }
 
-    @PutMapping(value = "/carrito/{id_carrito}/incproducto/{id_producto}")
+    @PutMapping(value = "/carrito/{id_carrito}/producto/{id_producto}/suma")
     public Detalle incremetarProducto(@PathVariable("id_carrito") Long id_carrito, @PathVariable("id_producto") Long id_producto){
         Carrito carrito = carritoRepository.getById(id_carrito);
         if (carrito.getEstado()) {
@@ -126,7 +126,7 @@ public class CarritoController {
         return null;
     }
 
-    @PutMapping(value = "/carrito/{id_carrito}/delproducto/{id_producto}")
+    @PutMapping(value = "/carrito/{id_carrito}/producto/{id_producto}/baja")
     public Detalle delProducto(@PathVariable("id_carrito") Long id_carrito, @PathVariable("id_producto") Long id_producto){
         Carrito carrito = carritoRepository.getById(id_carrito);
         if (carrito.getEstado()) {

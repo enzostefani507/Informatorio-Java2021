@@ -21,13 +21,13 @@ public class ProductoController {
         return  productoRepository.findAll();
     }
 
-    @GetMapping(value = "/producto/{id}")
-    public Producto verProducto(@PathVariable("id") Long id){
-        return productoRepository.getById(id);
+    @GetMapping(value = "/producto/{id_producto}")
+    public Producto verProducto(@PathVariable("id_producto") Long id_producto){
+        return productoRepository.getById(id_producto);
     }
 
-    @GetMapping(value = "/producto/buscar/nombre/exact")
-    public List<Producto> buscarPorNombre(@RequestParam(value="nombre") String nombre){
+    @GetMapping(value = "/producto/buscarComienzo")
+    public List<Producto> buscarPorNombreComienzaCon(@RequestParam(value="nombre") String nombre){
         return productoRepository.findByNombreStartingWith(nombre);
     }
 
@@ -44,9 +44,9 @@ public class ProductoController {
         return productoRepository.save(prod);
     }
 
-    @GetMapping(value = "/producto/buscaC/")
-    public List<Producto> buscarPorCategoria(@RequestParam(value="categoria") Categoria categoria){
-        return productoRepository.findByCategoria(categoria);
+    @GetMapping(value = "/producto/buscarCategoria")
+    public List<Producto> buscarPorCategoria(@RequestParam(value="nombre") Categoria nombre){
+        return productoRepository.findByCategoria(nombre);
     }
 
     @DeleteMapping(value = "producto/{id}")
@@ -55,18 +55,18 @@ public class ProductoController {
         productoRepository.delete(producto);
     }
 
-    @GetMapping(value = "producto/buscar/nombre/aprox")
+    @GetMapping(value = "producto/buscarContiene")
     public List<Producto> buscarProductoPorCadenaContenidaEnNombre(@RequestParam String nombre){
         return productoRepository.findByNombreContaining(nombre);
     }
 
 
-    @GetMapping(value = "producto/NoPublicado")
+    @GetMapping(value = "producto/noPublicado")
     public List<Producto> buscarProductoNoPublicados(){
         return productoRepository.findByPublicadoFalse();
     }
 
-    @GetMapping(value = "producto/SiPublicado")
+    @GetMapping(value = "producto/siPublicado")
     public List<Producto> buscarProductoSiPublicados(){
         return productoRepository.findByPublicadoTrue();
     }

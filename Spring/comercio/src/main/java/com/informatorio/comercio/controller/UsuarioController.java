@@ -46,7 +46,7 @@ public class UsuarioController {
         return usuarioRepository.save(user);
     }
 
-    @PutMapping(value="/usuario/{id}/change")
+    @PutMapping(value="/usuario/{id}/credencial")
     public Usuario modificarUsuarioCredenciales(@PathVariable("id") Long id, @RequestBody Usuario usuario){
         Usuario user = usuarioRepository.getById(id);
         user.setPassword(usuario.pwd());
