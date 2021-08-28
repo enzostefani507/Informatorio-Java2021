@@ -60,4 +60,15 @@ public class ProductoController {
     public List<Producto> buscarProductoPorCadenaContenidaEnNombre(@RequestParam String nombre){
         return productoRepository.findByNombreContaining(nombre);
     }
+
+
+    @GetMapping(value = "producto/NoPublicado")
+    public List<Producto> buscarProductoNoPublicados(){
+        return productoRepository.findByPublicadoFalse();
+    }
+
+    @GetMapping(value = "producto/SiPublicado")
+    public List<Producto> buscarProductoSiPublicados(){
+        return productoRepository.findByPublicadoTrue();
+    }
 }
