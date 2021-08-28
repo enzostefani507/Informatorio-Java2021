@@ -3,6 +3,7 @@ import com.informatorio.comercio.domain.Usuario;
 import com.informatorio.comercio.repository.DireccionRepository;
 import com.informatorio.comercio.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -63,4 +64,13 @@ public class UsuarioController {
         return usuarioRepository.getByDireccionCiudad("Resistencia");
     }
 
+    @GetMapping(value = "/usuario/buscar/fechaDesde")
+    public List<Usuario> buscarUsuariosPorFechaAltaDede(@RequestParam  @DateTimeFormat(pattern = "dd.MM.yyyy") Date fecha){
+        return usuarioRepository.getByFechaCreacionAfter(fecha);
+    }
+
+    @GetMapping(value = "/usuario/buscar/fechaCreacion")
+    public List<Usuario> buscarUsuariosPorFecha(@RequestParam  @DateTimeFormat(pattern = "dd.MM.yyyy") Date fecha){
+        return usuarioRepository.getByFechaCreacion(fecha);
+    }
 }

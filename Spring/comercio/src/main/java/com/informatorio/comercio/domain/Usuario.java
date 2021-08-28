@@ -39,7 +39,7 @@ public class Usuario {
 
     @Column(nullable = false,updatable = false)
     @Temporal(TemporalType.DATE)
-    private Date fecha_creacion = UsuarioService.creacion();
+    private Date fechaCreacion = UsuarioService.creacion();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="direccion_id", referencedColumnName = "id")
@@ -67,7 +67,7 @@ public class Usuario {
     public Direccion getDireccion() {return direccion;}
     public List<Carrito> getCarritos() {return carritos;}
     public Long getId() {return id;}
-    public Date getFecha_creacion() {return fecha_creacion;}
+    public Date getFechaCreacion() {return fechaCreacion;}
     public Rol getRol() {return  this.rol;}
     public String getEmail() { return email;}
     public String pwd() { return password;}
