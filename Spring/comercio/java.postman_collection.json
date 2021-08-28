@@ -46,7 +46,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"nombre\":\"Lucas\",\n    \"apellido\":\"Benites\",\n    \"direccion\": {\n        \"numero\":\"123\",\n        \"calle\":\"san lorenzo\",\n        \"barrio\":\"manuel\",\n        \"ciudad\":\"La leonesa\"\n    }\n}",
+									"raw": "{\n    \"nombre\":\"Lucadas\",\n    \"apellido\":\"Bendites\",\n    \"direccion\": {\n        \"numero\":\"123\",\n        \"calle\":\"san lorenzo\",\n        \"barrio\":\"manuel\",\n        \"ciudad\":\"La leonesa\",\n        \"provincia\":\"Chaco\"\n    },\n    \"rol\":\"Cliente\",\n    \"password\":\"quetald\",\n    \"email\":\"asdfaadsda@gmail.com\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -124,7 +124,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"nombre\": \"Enzo\",\n    \"apellido\": \"AAAA\",\n    \"fecha_creacion\": \"2021-08-19\",\n    \"direccion\": {\n        \"numero\": \"666\",\n        \"calle\": \"san lorenzo\",\n        \"barrio\": \"manuel\",\n        \"ciudad\": \"La leonesa\"\n    }\n}",
+									"raw": "{\n    \"nombre\":\"Lucadas\",\n    \"apellido\":\"Bendites\",\n    \"direccion\": {\n        \"numero\":\"123\",\n        \"calle\":\"san lorenzo\",\n        \"barrio\":\"manuel\",\n        \"ciudad\":\"resistencia\",\n        \"provincia\":\"Chaco\"\n    },\n    \"rol\":\"Cliente\",\n    \"password\":\"quetald\",\n    \"email\":\"asdfaadsda@gmail.com\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -144,6 +144,105 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Modificar credenciales usuario",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"password\":\"123\",\n    \"email\":\"123@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/usuario/3/change",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"3",
+										"change"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busqueda por ciudad",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/usuario/direccion?ciudad=Laleonasesa",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"direccion"
+									],
+									"query": [
+										{
+											"key": "ciudad",
+											"value": "Laleonasesa"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar Usuarios de resistencia",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/usuario/direccion/resistencia",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"direccion",
+										"resistencia"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar Usuarios por fecha creacion",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/usuario/fecha?desde=2021-01-01",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"fecha"
+									],
+									"query": [
+										{
+											"key": "desde",
+											"value": "2021-01-01"
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -157,7 +256,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"nombre\":\"PasdfC\",\n    \"descripcion\":\"apasdfarato para oficina\",\n    \"precio_unitario\":132.22,\n    \"codigo_inventario\":\"ASfa-2\",\n    \"categoria\":\"Jugos\"\n}\n",
+									"raw": "{\n    \"nombre\":\"holaCOmoeestas\",\n    \"descripcion\":\"apasdfasdfaarato paraasdf oficina\",\n    \"precio_unitario\":132.22,\n    \"codigo_inventario\":\"AsdSfasdfasddsfa-2\",\n    \"categoria\":\"Jugos\",\n    \"publicado\":true,\n    \"contenido\":\"Este es el contenido, adfun teto largo\"\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -184,7 +283,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"nombre\":\"pc\",\n    \"descripcion\":\"aparato para oficina\",\n    \"precio_unitario\":400\n}\n",
+									"raw": "{\n    \"nombre\":\"PaasdfasfsadassdfC\",\n    \"descripcion\":\"apasdfasdfaarato paraasdf oficina\",\n    \"precio_unitario\":1342.22,\n    \"codigo_inventario\":\"AsdSfasdfassadfddsfa-2\",\n    \"categoria\":\"Jugos\",\n    \"publicado\":false,\n    \"contenido\":\"Este es el contenido, adfun teto largo\"\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -260,20 +359,22 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/producto/buscaN/?nombre=aa",
+									"raw": "localhost:8080/producto/buscar/nombre/exact/?nombre=ho",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"producto",
-										"buscaN",
+										"buscar",
+										"nombre",
+										"exact",
 										""
 									],
 									"query": [
 										{
 											"key": "nombre",
-											"value": "aa"
+											"value": "ho"
 										}
 									]
 								}
@@ -305,6 +406,72 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "buscar por nombre aproximado",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/producto/buscar/nombre/aprox/?nombre=mo",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"producto",
+										"buscar",
+										"nombre",
+										"aprox",
+										""
+									],
+									"query": [
+										{
+											"key": "nombre",
+											"value": "mo"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "buscar no publicados",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/producto/NoPublicado",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"producto",
+										"NoPublicado"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "buscar si publicados",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/producto/SiPublicado",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"producto",
+										"SiPublicado"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -316,6 +483,15 @@
 							"request": {
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"origen\":\"mobile\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "localhost:8080/carrito/nuevo/1",
 									"host": [
@@ -332,19 +508,37 @@
 							"response": []
 						},
 						{
+							"name": "Ver carritos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/carrito",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"carrito"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Ver carrito",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/carrito/5",
+									"raw": "localhost:8080/carrito/1",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"carrito",
-										"5"
+										"1"
 									]
 								}
 							},
@@ -365,14 +559,14 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8080/carrito/3",
+									"raw": "localhost:8080/carrito/7",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"carrito",
-										"3"
+										"7"
 									]
 								}
 							},
@@ -384,16 +578,16 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/carrito/5/addproducto/3",
+									"raw": "localhost:8080/carrito/1/addproducto/1",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"carrito",
-										"5",
+										"1",
 										"addproducto",
-										"3"
+										"1"
 									]
 								}
 							},
@@ -405,14 +599,14 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/carrito/4/delproducto/3",
+									"raw": "localhost:8080/carrito/9/delproducto/3",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"carrito",
-										"4",
+										"9",
 										"delproducto",
 										"3"
 									]
@@ -426,14 +620,14 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/carrito/2/decproducto/3",
+									"raw": "localhost:8080/carrito/9/decproducto/3",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"carrito",
-										"2",
+										"9",
 										"decproducto",
 										"3"
 									]
@@ -447,34 +641,128 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/carrito/5/incproducto/3",
+									"raw": "localhost:8080/carrito/1/incproducto/1",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"carrito",
-										"5",
+										"1",
 										"incproducto",
-										"3"
+										"1"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Ver carritos",
+							"name": "Cerrar carrito",
 							"request": {
-								"method": "GET",
+								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/carrito",
+									"raw": "localhost:8080/carrito/1/close",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"carrito"
+										"carrito",
+										"1",
+										"close"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "CRUD Orden",
+					"item": [
+						{
+							"name": "Ver ordenes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/orden",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"orden"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver orden",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/orden/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"orden",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear orden",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tipo\":\"A\",\n    \"origen\":\"mobile\",\n    \"observacion\":\"Esta es una observaicon\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/ordenadd/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ordenadd",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cambiar estado Orden",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/usuario/2/orden/1/close",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"2",
+										"orden",
+										"1",
+										"close"
 									]
 								}
 							},
