@@ -68,7 +68,7 @@ public class OrdenController {
 
     @PutMapping(value = "usuario/{id_usuario}/orden/{id_carrito}/close")
     public Orden cancelarOrden(@PathVariable("id_carrito") Long id_carrito, @PathVariable("id_usuario") Long id_usuario){
-        Orden orden = ordenRepository.getById(id_carrito);  
+        Orden orden = ordenRepository.getById(id_carrito);
         Usuario usuario = usuarioRepository.getById(id_usuario);
         if ((usuario.getRol()==Comerciante) && (orden.getEstado()==Confirmada)){
             orden.setEstado(Cancelada);
@@ -82,4 +82,11 @@ public class OrdenController {
         Orden orden =  ordenRepository.getById(id);
         ordenRepository.delete(orden);
     }
+
+    @GetMapping(value = "/usuario/{id_usuario}/orden")
+    public List<Orden> obtenerOrdenesDelUsuario(@PathVariable("id_usuario") Long id_usuario){
+        Usuario user = usuarioRepository.getById(id_usuario);
+        return ordenRepository.findByUsuario(user);
+    }
+
 }

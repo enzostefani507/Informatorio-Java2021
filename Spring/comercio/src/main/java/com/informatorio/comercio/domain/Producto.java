@@ -1,4 +1,5 @@
 package com.informatorio.comercio.domain;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.informatorio.comercio.service.UsuarioService;
 import org.w3c.dom.Text;
@@ -48,9 +49,6 @@ public class Producto {
     @Enumerated(value = EnumType.STRING)
     private Categoria categoria;
 
-    @OneToOne(mappedBy = "producto")
-    private Detalle detalle;
-
     @Column(nullable = false,updatable = false)
     @Temporal(TemporalType.DATE)
     private Date fecha_creacion = UsuarioService.creacion();
@@ -72,6 +70,7 @@ public class Producto {
     public Boolean getPublicado() {return publicado;}
     public String getContenido() {return contenido;}
 
+
     //Setters
     public void setCategoria(Categoria categoria) {this.categoria = categoria;}
     public void setNombre(String nombre) {this.nombre = nombre;}
@@ -84,4 +83,5 @@ public class Producto {
     public void setPublicado(Boolean publicado) { this.publicado = publicado;}
     public void setContenido(String contenido){ this.contenido = contenido;}
     public void setCodigo_inventario(String cod) { this.codigo_inventario = cod;}
+
 }

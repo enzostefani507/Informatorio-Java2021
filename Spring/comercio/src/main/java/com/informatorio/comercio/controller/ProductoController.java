@@ -40,7 +40,6 @@ public class ProductoController {
         prod.setContenido(producto.getContenido());
         prod.setPublicado(producto.getPublicado());
         prod.setCategoria(producto.getCategoria());
-        prod.setCategoria(producto.getCategoria());
         prod.setCodigo_inventario(producto.getCodigo_inventario());
         return productoRepository.save(prod);
     }
