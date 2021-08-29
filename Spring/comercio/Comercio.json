@@ -46,7 +46,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"nombre\":\"Lucadas\",\n    \"apellido\":\"Bendites\",\n    \"direccion\": {\n        \"numero\":\"123\",\n        \"calle\":\"san lorenzo\",\n        \"barrio\":\"manuel\",\n        \"ciudad\":\"La leonesa\",\n        \"provincia\":\"Chaco\"\n    },\n    \"rol\":\"Cliente\",\n    \"password\":\"quetald\",\n    \"email\":\"asdfaadsda@gmail.com\"\n}",
+									"raw": "{\n    \"nombre\":\"Lucadas\",\n    \"apellido\":\"Bendites\",\n    \"direccion\": {\n        \"numero\":\"123\",\n        \"calle\":\"san lorenzo\",\n        \"barrio\":\"manuel\",\n        \"ciudad\":\"La leonesa\",\n        \"provincia\":\"Chaco\"\n    },\n    \"rol\":\"Cliente\",\n    \"password\":\"quetald\",\n    \"email\":\"asdfaadddsda@gmail.com\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -160,15 +160,15 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8080/usuario/3/change",
+									"raw": "localhost:8080/usuario/1/credencial",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"usuario",
-										"3",
-										"change"
+										"1",
+										"credencial"
 									]
 								}
 							},
@@ -220,24 +220,52 @@
 							"response": []
 						},
 						{
-							"name": "Buscar Usuarios por fecha creacion",
+							"name": "Buscar Usuarios crados apartir de una fecha",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/usuario/fecha?desde=2021-01-01",
+									"raw": "localhost:8080/usuario/buscar/fechaDesde/?fecha=25.08.2021",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"usuario",
-										"fecha"
+										"buscar",
+										"fechaDesde",
+										""
 									],
 									"query": [
 										{
-											"key": "desde",
-											"value": "2021-01-01"
+											"key": "fecha",
+											"value": "25.08.2021"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar Usuarios crados en una fecha",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/usuario/buscar/fechaCreacion?fecha=22.08.2021",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"buscar",
+										"fechaCreacion"
+									],
+									"query": [
+										{
+											"key": "fecha",
+											"value": "22.08.2021"
 										}
 									]
 								}
@@ -256,7 +284,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"nombre\":\"holaCOmoeestas\",\n    \"descripcion\":\"apasdfasdfaarato paraasdf oficina\",\n    \"precio_unitario\":132.22,\n    \"codigo_inventario\":\"AsdSfasdfasddsfa-2\",\n    \"categoria\":\"Jugos\",\n    \"publicado\":true,\n    \"contenido\":\"Este es el contenido, adfun teto largo\"\n}\n",
+									"raw": "{\n    \"nombre\":\"holaCOmoeestas\",\n    \"descripcion\":\"apasdfasdfaarato paraasdf oficina\",\n    \"precio_unitario\":132.22,\n    \"codigo_inventario\":\"AsdSfasadfasddsfa-2\",\n    \"categoria\":\"Jugos\",\n    \"publicado\":true,\n    \"contenido\":\"Este es el contenido, adfun teto largo\"\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -354,22 +382,19 @@
 							"response": []
 						},
 						{
-							"name": "buscar por nombre",
+							"name": "buscar por comienzo de nombre",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/producto/buscar/nombre/exact/?nombre=ho",
+									"raw": "localhost:8080/producto/buscarComienzo?nombre=ho",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"producto",
-										"buscar",
-										"nombre",
-										"exact",
-										""
+										"buscarComienzo"
 									],
 									"query": [
 										{
@@ -387,20 +412,19 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/producto/buscaC/?id=9",
+									"raw": "localhost:8080/producto/buscarCategoria?nombre=Jugos",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"producto",
-										"buscaC",
-										""
+										"buscarCategoria"
 									],
 									"query": [
 										{
-											"key": "id",
-											"value": "9"
+											"key": "nombre",
+											"value": "Jugos"
 										}
 									]
 								}
@@ -413,17 +437,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/producto/buscar/nombre/aprox/?nombre=mo",
+									"raw": "localhost:8080/producto/buscarContiene?nombre=mo",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"producto",
-										"buscar",
-										"nombre",
-										"aprox",
-										""
+										"buscarContiene"
 									],
 									"query": [
 										{
@@ -441,14 +462,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/producto/NoPublicado",
+									"raw": "localhost:8080/producto/noPublicado",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"producto",
-										"NoPublicado"
+										"noPublicado"
 									]
 								}
 							},
@@ -460,14 +481,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/producto/SiPublicado",
+									"raw": "localhost:8080/producto/siPublicado",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"producto",
-										"SiPublicado"
+										"siPublicado"
 									]
 								}
 							},
@@ -493,15 +514,15 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8080/carrito/nuevo/1",
+									"raw": "localhost:8080/usuario/1/carrito",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"carrito",
-										"nuevo",
-										"1"
+										"usuario",
+										"1",
+										"carrito"
 									]
 								}
 							},
@@ -513,13 +534,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/carrito",
+									"raw": "localhost:8080/carrito/listar",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"carrito"
+										"carrito",
+										"listar"
 									]
 								}
 							},
@@ -578,7 +600,7 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/carrito/1/addproducto/1",
+									"raw": "localhost:8080/carrito/1/producto/1",
 									"host": [
 										"localhost"
 									],
@@ -586,7 +608,7 @@
 									"path": [
 										"carrito",
 										"1",
-										"addproducto",
+										"producto",
 										"1"
 									]
 								}
@@ -599,7 +621,7 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/carrito/9/delproducto/3",
+									"raw": "localhost:8080/carrito/9/producto/3/baja",
 									"host": [
 										"localhost"
 									],
@@ -607,8 +629,9 @@
 									"path": [
 										"carrito",
 										"9",
-										"delproducto",
-										"3"
+										"producto",
+										"3",
+										"baja"
 									]
 								}
 							},
@@ -620,16 +643,17 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/carrito/9/decproducto/3",
+									"raw": "localhost:8080/carrito/1/producto/1/resta",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"carrito",
-										"9",
-										"decproducto",
-										"3"
+										"1",
+										"producto",
+										"1",
+										"resta"
 									]
 								}
 							},
@@ -641,7 +665,7 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/carrito/1/incproducto/1",
+									"raw": "localhost:8080/carrito/1/producto/1/suma",
 									"host": [
 										"localhost"
 									],
@@ -649,8 +673,9 @@
 									"path": [
 										"carrito",
 										"1",
-										"incproducto",
-										"1"
+										"producto",
+										"1",
+										"suma"
 									]
 								}
 							},
@@ -662,7 +687,7 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/carrito/1/close",
+									"raw": "localhost:8080/carrito/1/estado",
 									"host": [
 										"localhost"
 									],
@@ -670,7 +695,7 @@
 									"path": [
 										"carrito",
 										"1",
-										"close"
+										"estado"
 									]
 								}
 							},
@@ -705,14 +730,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/orden/1",
+									"raw": "localhost:8080/orden/2",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"orden",
-										"1"
+										"2"
 									]
 								}
 							},
@@ -733,13 +758,13 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8080/ordenadd/1",
+									"raw": "localhost:8080/orden/1",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"ordenadd",
+										"orden",
 										"1"
 									]
 								}
@@ -763,6 +788,54 @@
 										"orden",
 										"1",
 										"close"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Borrar orden",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\":\"1\",\n    \"fecha_creacion\":\"2020-05-05\",\n    \"usuario\":{\n        \"id\": 1,\n        \"nombre\": \"aaaa\",\n        \"apellido\": \"vvvv\",\n        \"direccion\": \"Las palmas\",\n        \"carritoList\": [],\n        \"fecha_Alta\": \"2020-01-05T03:00:00.000+00:00\"\n    },\n    \"productos\":[\n        {\n            \"id\":\"1\",\n            \"nombre\":\"rapida\",\n            \"descripcion\":\"disponible\",\n            \"precio_unitario\":\"12\",\n            \"código_inventario\":\"asdf\"\n        }\n    ],\n    \"estado\":\"true\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/orden/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"orden",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ordenes del usuario",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/usuario/1/orden",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"1",
+										"orden"
 									]
 								}
 							},
