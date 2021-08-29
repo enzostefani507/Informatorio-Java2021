@@ -13,6 +13,8 @@ import java.util.Random;
 import static com.informatorio.comercio.domain.Estado.Cancelada;
 import static com.informatorio.comercio.domain.Estado.Confirmada;
 import static com.informatorio.comercio.domain.Rol.Comerciante;
+import static com.informatorio.comercio.service.OrdenService.tratarCancelarOrden;
+import static com.informatorio.comercio.service.OrdenService.tratarCreacionOrden;
 import static java.lang.Math.random;
 
 @RestController
@@ -39,41 +41,14 @@ public class OrdenController {
 
     @PostMapping(value = "/orden/{id_carrito}")
     public Orden crearOrden(@PathVariable("id_carrito") Long id_carrito,@RequestBody Orden orden){
-        Carrito carrito = carritoRepository.getById(id_carrito);
-        if (carrito.getEstado() && (carrito.getDetalle().size()>=1)) {
-            orden.setCarrito_id(id_carrito);
-            orden.setEstado(Confirmada);
-            orden.setUsuario(carrito.getUsuario());
-            orden.setObservacion(orden.getObservacion());
-            Random random = new Random();
-            Long numero = carrito.getUsuario().getId()*carrito.getId()*random.nextInt();
-            Orden orden_existe = ordenRepository.getById(numero);
-            orden.setNumero(numero);
-            List<Detalle> detalles_del_carrito = carrito.getDetalle();
-            for  (Detalle d : detalles_del_carrito) {
-                Linea l = new Linea();
-                l.setProducto_id(d.getProducto().getId());
-                l.setCantidad(d.getCantidad());
-                l.setPrecio(d.getProducto().getPrecio_unitario());
-                l.setOrden(orden);
-                orden.addLinea(l);
-                ordenRepository.save(orden);
-            }
-            carrito.setEstado(false);
-            carritoRepository.save(carrito);
-            return ordenRepository.save(orden);
-        }
+        tratarCreacionOrden(orden, id_carrito);
         return null;
     }
 
     @PutMapping(value = "usuario/{id_usuario}/orden/{id_carrito}/close")
     public Orden cancelarOrden(@PathVariable("id_carrito") Long id_carrito, @PathVariable("id_usuario") Long id_usuario){
         Orden orden = ordenRepository.getById(id_carrito);
-        Usuario usuario = usuarioRepository.getById(id_usuario);
-        if ((usuario.getRol()==Comerciante) && (orden.getEstado()==Confirmada)){
-            orden.setEstado(Cancelada);
-            return ordenRepository.save(orden);
-        }
+        tratarCancelarOrden(orden, id_usuario);
         return null;
     }
 

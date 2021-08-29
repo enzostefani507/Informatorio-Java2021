@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+import static com.informatorio.comercio.service.ProductoService.modificarDatosProducto;
+
 @RestController()
 public class ProductoController {
     @Autowired
@@ -31,17 +33,10 @@ public class ProductoController {
         return productoRepository.findByNombreStartingWith(nombre);
     }
 
-    @PutMapping(value = "/producto/{id}")
-    public Producto modificarProducto(@PathVariable("id") Long id, @RequestBody  Producto producto){
-        Producto prod = productoRepository.getById(id);
-        prod.setDescripcion(producto.getDescripcion());
-        prod.setNombre(producto.getNombre());
-        prod.setPrecio_unitario(producto.getPrecio_unitario());
-        prod.setContenido(producto.getContenido());
-        prod.setPublicado(producto.getPublicado());
-        prod.setCategoria(producto.getCategoria());
-        prod.setCodigo_inventario(producto.getCodigo_inventario());
-        return productoRepository.save(prod);
+    @PutMapping(value = "/producto/{id_producto}")
+    public Producto modificarProducto(@PathVariable("id_producto") Long id_producto, @RequestBody  Producto producto_modificado){
+        Producto producto = productoRepository.getById(id_producto);
+        return modificarDatosProducto(producto ,producto_modificado);
     }
 
     @GetMapping(value = "/producto/buscarCategoria")
@@ -59,7 +54,6 @@ public class ProductoController {
     public List<Producto> buscarProductoPorCadenaContenidaEnNombre(@RequestParam String nombre){
         return productoRepository.findByNombreContaining(nombre);
     }
-
 
     @GetMapping(value = "producto/noPublicado")
     public List<Producto> buscarProductoNoPublicados(){

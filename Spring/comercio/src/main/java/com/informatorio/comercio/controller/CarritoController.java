@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.informatorio.comercio.service.CarritoService.nuevo_carrito;
+import static com.informatorio.comercio.service.CarritoService.*;
 
 
 @RestController
@@ -52,11 +52,7 @@ public class CarritoController {
     @PutMapping(value = "/carrito/{id_carrito}/estado")
     public List<Detalle> cerrarCarrito(@PathVariable("id_carrito") Long id_carrito){
         Carrito carrito = carritoRepository.getById(id_carrito);
-        if (carrito.getDetalle().size()>=1) {
-            carrito.setEstado(false);
-            carritoRepository.save(carrito);
-            return carrito.getDetalle();
-        }
+        evaluarCerrarCarrito(carrito);
         return null;
     }
 
@@ -68,78 +64,28 @@ public class CarritoController {
     @PutMapping(value = "/carrito/{id_carrito}/producto/{id_producto}")
     public Detalle addProducto(@PathVariable("id_carrito") Long id_carrito,@PathVariable("id_producto") Long id_producto){
         Carrito carrito = carritoRepository.getById(id_carrito);
-        if (carrito.getEstado()) {
-            Producto producto = productoRepository.getById(id_producto);
-            Detalle detalle = new Detalle();
-            detalle.setProducto(producto);
-            detalle.setCarrito(carrito);
-            Boolean producto_existente = false;
-            List<Detalle> detalles_del_carrito = carrito.getDetalle();
-            for (Detalle d : detalles_del_carrito) {
-                if (d.getProducto().equals(producto)) {
-                    producto_existente = true;
-                    return d;
-                }
-            }
-            carrito.addDetalle(detalle);
-            carritoRepository.save(carrito);
-            return detalle;
-        }
+        evaluarAnadirProducto(carrito,id_producto);
         return null;
     }
 
     @PutMapping(value = "/carrito/{id_carrito}/producto/{id_producto}/resta")
     public Detalle decremetarProducto(@PathVariable("id_carrito") Long id_carrito, @PathVariable("id_producto") Long id_producto){
         Carrito carrito = carritoRepository.getById(id_carrito);
-        if (carrito.getEstado()) {
-            Producto producto = productoRepository.getById(id_producto);
-            List<Detalle> detalles_del_carrito = carrito.getDetalle();
-            for (Detalle d : detalles_del_carrito) {
-                if (d.getProducto().getId().equals(producto.getId())) {
-                    if (d.getCantidad() == 1) {
-                        carrito.removeDetalle(d);
-                        detalleRepository.save(d);
-                        break;
-                    } else {
-                        d.decCantidad();
-                        return detalleRepository.save(d);
-                    }
-                }
-            }
-        }
+        evaluarDecrementarProducto(carrito, id_producto);
         return null;
     }
 
     @PutMapping(value = "/carrito/{id_carrito}/producto/{id_producto}/suma")
     public Detalle incremetarProducto(@PathVariable("id_carrito") Long id_carrito, @PathVariable("id_producto") Long id_producto){
         Carrito carrito = carritoRepository.getById(id_carrito);
-        if (carrito.getEstado()) {
-            Producto producto = productoRepository.getById(id_producto);
-            List<Detalle> detalles_del_carrito = carrito.getDetalle();
-            for (Detalle d : detalles_del_carrito) {
-                if (d.getProducto().getId().equals(producto.getId())) {
-                    d.incCantidad();
-                    return detalleRepository.save(d);
-                }
-            }
-        }
+        evaluarIncrementarProducto(carrito, id_producto);
         return null;
     }
 
     @PutMapping(value = "/carrito/{id_carrito}/producto/{id_producto}/baja")
     public Detalle delProducto(@PathVariable("id_carrito") Long id_carrito, @PathVariable("id_producto") Long id_producto){
         Carrito carrito = carritoRepository.getById(id_carrito);
-        if (carrito.getEstado()) {
-            Producto producto = productoRepository.getById(id_producto);
-            List<Detalle> detalles_del_carrito = carrito.getDetalle();
-            for (Detalle d : detalles_del_carrito) {
-                if (d.getProducto().getId().equals(producto.getId())) {
-                    carrito.removeDetalle(d);
-                    detalleRepository.delete(d);
-                    return d;
-                }
-            }
-        }
+        tratarSacarProducto(carrito,id_producto);
         return null;
     }
 }

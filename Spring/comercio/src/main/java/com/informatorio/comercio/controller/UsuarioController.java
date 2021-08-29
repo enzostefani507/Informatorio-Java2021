@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 
+import static com.informatorio.comercio.service.UsuarioService.modificarCredenciales;
+import static com.informatorio.comercio.service.UsuarioService.modificarDatos;
+
 @RestController()
 public class UsuarioController {
 
@@ -40,18 +43,13 @@ public class UsuarioController {
     @PutMapping(value = "/usuario/{id}")
     public Usuario modificarUsuario(@PathVariable("id") Long id, @RequestBody Usuario usuario){
         Usuario user = usuarioRepository.getById(id);
-        user.setNombre(usuario.getNombre());
-        user.setApellido(usuario.getApellido());
-        user.setDireccion(usuario.getDireccion());
-        return usuarioRepository.save(user);
+        return modificarDatos(user, usuario);
     }
 
     @PutMapping(value="/usuario/{id}/credencial")
     public Usuario modificarUsuarioCredenciales(@PathVariable("id") Long id, @RequestBody Usuario usuario){
         Usuario user = usuarioRepository.getById(id);
-        user.setPassword(usuario.pwd());
-        user.setEmail(usuario.getEmail());
-        return usuarioRepository.save(user);
+        return modificarCredenciales(user, usuario);
     }
 
     @GetMapping(value = "/usuario/direccion")
