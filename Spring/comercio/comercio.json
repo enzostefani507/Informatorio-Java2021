@@ -534,14 +534,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/carrito/listar",
+									"raw": "localhost:8080/carrito/",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"carrito",
-										"listar"
+										""
 									]
 								}
 							},
