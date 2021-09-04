@@ -18,7 +18,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"nombre\":\"LucaAdas\",\n    \"apellido\":\"BenAdites\",\n    \"direccion\": {\n        \"numero\":\"S123\",\n        \"calle\":\"san lorenzo\",\n        \"barrio\":\"manuel\",\n        \"ciudad\":\"La leonesa\",\n        \"provincia\":\"Chaco\"\n    },\n    \"rol\":\"Cliente\",\n    \"password\":\"ADFAad\",\n    \"email\":\"asdSfdd@agmail.com\"\n}",
+									"raw": "{\n    \"nombre\":\"LucaAdas\",\n    \"apellido\":\"BenAdites\",\n    \"direccion\": {\n        \"numero\":\"S123\",\n        \"calle\":\"san lorenzo\",\n        \"barrio\":\"manuel\",\n        \"ciudad\":\"Resistencia\",\n        \"provincia\":\"Chaco\"\n    },\n    \"rol\":\"Comerciante\",\n    \"password\":\"ADFAad\",\n    \"email\":\"asdsSfddad@agmail.com\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -96,7 +96,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"nombre\":\"as\",\n    \"apellido\":\"BenAdites\",\n    \"direccion\": {\n        \"numero\":\"S123\",\n        \"calle\":\"san lorenzo\",\n        \"barrio\":\"manuel\",\n        \"ciudad\":\"La leonesa\",\n        \"provincia\":\"Chaco\"\n    }\n}",
+									"raw": "{\n    \"nombre\":\"Ricardo\",\n    \"apellido\":\"BenAdites\",\n    \"direccion\": {\n        \"numero\":\"S123\",\n        \"calle\":\"san Florenzo\",\n        \"barrio\":\"manuel\",\n        \"ciudad\":\"La leonesa\",\n        \"provincia\":\"Chaco\"\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -255,7 +255,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/usuario/buscar/fechaCreacion?fecha=22.08.2021",
+									"raw": "localhost:8080/usuario/buscar/fechaCreacion?fecha=04.09.2021",
 									"host": [
 										"localhost"
 									],
@@ -268,7 +268,7 @@
 									"query": [
 										{
 											"key": "fecha",
-											"value": "22.08.2021"
+											"value": "04.09.2021"
 										}
 									]
 								}
@@ -311,14 +311,14 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8080/usuario/2",
+									"raw": "localhost:8080/usuario/1",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"usuario",
-										"2"
+										"1"
 									]
 								}
 							},
@@ -714,14 +714,14 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/carrito/1/producto/1/resta",
+									"raw": "localhost:8080/carrito/2/producto/1/resta",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"carrito",
-										"1",
+										"2",
 										"producto",
 										"1",
 										"resta"
@@ -736,14 +736,14 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/carrito/1/producto/1/suma",
+									"raw": "localhost:8080/carrito/2/producto/1/suma",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"carrito",
-										"1",
+										"2",
 										"producto",
 										"1",
 										"suma"

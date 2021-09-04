@@ -1,6 +1,11 @@
 package com.informatorio.comercio.controller;
 import com.informatorio.comercio.domain.Categoria;
+import com.informatorio.comercio.domain.Detalle;
+import com.informatorio.comercio.domain.Orden;
 import com.informatorio.comercio.domain.Producto;
+import com.informatorio.comercio.repository.DetalleRepository;
+import com.informatorio.comercio.repository.LineaRepository;
+import com.informatorio.comercio.repository.OrdenRepository;
 import com.informatorio.comercio.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,11 +13,23 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+import static org.springframework.http.HttpStatus.CONFLICT;
+import static org.springframework.http.HttpStatus.OK;
+
 
 @RestController()
 public class ProductoController {
     @Autowired
     private ProductoRepository productoRepository;
+
+    @Autowired
+    private OrdenRepository ordenRepository;
+
+    @Autowired
+    private LineaRepository lineaRepository;
+
+    @Autowired
+    private DetalleRepository detalleRepository;
 
     @PostMapping(value = "/producto")
     public Producto crearProducto(@RequestBody Producto producto){
@@ -30,7 +47,7 @@ public class ProductoController {
         if (producto == null){
             return new ResponseEntity<>("El producto con el id indicado no existe.", HttpStatus.NOT_FOUND);
         }else{
-            return new ResponseEntity<>(producto,HttpStatus.OK);
+            return new ResponseEntity<>(producto, OK);
         }
     }
 
@@ -67,8 +84,14 @@ public class ProductoController {
     public Object borrarProducto(@PathVariable("id") Long id){
         Producto producto = productoRepository.findById(id).orElse(null);
         if (producto != null){
+            if (detalleRepository.existsByProducto(producto)){
+                return new ResponseEntity<>("El producto no se puede eliminar, se encuentra en un carrito.", CONFLICT);
+            }
+            if (lineaRepository.existsByProductoId(producto.getId())){
+                return new ResponseEntity<>("El producto no se puede eliminar, se encuentra en una compra.", CONFLICT);
+            }
             productoRepository.delete(producto);
-            return new ResponseEntity<>("El producto fue eliminado.",HttpStatus.OK);
+            return new ResponseEntity<>("El producto fue eliminado.", OK);
         }else{
             return new ResponseEntity<>("El producto con el id indicado no existe.", HttpStatus.NOT_FOUND);
         }
