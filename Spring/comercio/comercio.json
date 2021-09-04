@@ -12,41 +12,13 @@
 					"name": "CRUD Usuario",
 					"item": [
 						{
-							"name": "Eliminar usuario",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"id\":\"1\",\n    \"nombre\":\"aaaa\",\n    \"apellido\":\"vvvv\",\n    \"direccion\":\"Las palmas\",\n    \"fecha_Alta\":\"2020-01-05\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/usuario/2",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"usuario",
-										"2"
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "Crear usuario",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"nombre\":\"Lucadas\",\n    \"apellido\":\"Bendites\",\n    \"direccion\": {\n        \"numero\":\"123\",\n        \"calle\":\"san lorenzo\",\n        \"barrio\":\"manuel\",\n        \"ciudad\":\"La leonesa\",\n        \"provincia\":\"Chaco\"\n    },\n    \"rol\":\"Cliente\",\n    \"password\":\"quetald\",\n    \"email\":\"asdfaadddsda@gmail.com\"\n}",
+									"raw": "{\n    \"nombre\":\"LucaAdas\",\n    \"apellido\":\"BenAdites\",\n    \"direccion\": {\n        \"numero\":\"S123\",\n        \"calle\":\"san lorenzo\",\n        \"barrio\":\"manuel\",\n        \"ciudad\":\"La leonesa\",\n        \"provincia\":\"Chaco\"\n    },\n    \"rol\":\"Cliente\",\n    \"password\":\"ADFAad\",\n    \"email\":\"asdSfdd@agmail.com\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -124,7 +96,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"nombre\":\"Lucadas\",\n    \"apellido\":\"Bendites\",\n    \"direccion\": {\n        \"numero\":\"123\",\n        \"calle\":\"san lorenzo\",\n        \"barrio\":\"manuel\",\n        \"ciudad\":\"resistencia\",\n        \"provincia\":\"Chaco\"\n    },\n    \"rol\":\"Cliente\",\n    \"password\":\"quetald\",\n    \"email\":\"asdfaadsda@gmail.com\"\n}",
+									"raw": "{\n    \"nombre\":\"as\",\n    \"apellido\":\"BenAdites\",\n    \"direccion\": {\n        \"numero\":\"S123\",\n        \"calle\":\"san lorenzo\",\n        \"barrio\":\"manuel\",\n        \"ciudad\":\"La leonesa\",\n        \"provincia\":\"Chaco\"\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -146,13 +118,13 @@
 							"response": []
 						},
 						{
-							"name": "Modificar credenciales usuario",
+							"name": "Modificar contraseña usuario",
 							"request": {
 								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"password\":\"123\",\n    \"email\":\"123@gmail.com\"\n}",
+									"raw": "nuevaPwd",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -160,7 +132,7 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8080/usuario/1/credencial",
+									"raw": "localhost:8080/usuario/1/credencial/contrasenia",
 									"host": [
 										"localhost"
 									],
@@ -168,7 +140,38 @@
 									"path": [
 										"usuario",
 										"1",
-										"credencial"
+										"credencial",
+										"contrasenia"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modificar email usuario",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "ENZOSTEFANI507@gmail.com",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/usuario/1/credencial/email",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"1",
+										"credencial",
+										"email"
 									]
 								}
 							},
@@ -180,7 +183,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/usuario/direccion?ciudad=Laleonasesa",
+									"raw": "localhost:8080/usuario/direccion?ciudad=La leonesa",
 									"host": [
 										"localhost"
 									],
@@ -192,7 +195,7 @@
 									"query": [
 										{
 											"key": "ciudad",
-											"value": "Laleonasesa"
+											"value": "La leonesa"
 										}
 									]
 								}
@@ -271,6 +274,55 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Ver carrito del usuario",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/usuario/1/carrito/detalle",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"1",
+										"carrito",
+										"detalle"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar usuario",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\":\"1\",\n    \"nombre\":\"aaaa\",\n    \"apellido\":\"vvvv\",\n    \"direccion\":\"Las palmas\",\n    \"fecha_Alta\":\"2020-01-05\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/usuario/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"2"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -284,7 +336,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"nombre\":\"holaCOmoeestas\",\n    \"descripcion\":\"apasdfasdfaarato paraasdf oficina\",\n    \"precio_unitario\":132.22,\n    \"codigo_inventario\":\"AsdSfasadfasddsfa-2\",\n    \"categoria\":\"Jugos\",\n    \"publicado\":true,\n    \"contenido\":\"Este es el contenido, adfun teto largo\"\n}\n",
+									"raw": "{\n    \"nombre\":\"holaCOmsoeestass\",\n    \"descripcion\":\"apasdfasdfaarato paraasdf oficina\",\n    \"precio_unitario\":132.22,\n    \"codigo_inventario\":\"AsdSfasaassdasdasdsddsfa-2\",\n    \"categoria\":\"Jugos\",\n    \"publicado\":true,\n    \"contenido\":\"Este es el contenido, adfun teto largo\"\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -311,7 +363,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"nombre\":\"PaasdfasfsadassdfC\",\n    \"descripcion\":\"apasdfasdfaarato paraasdf oficina\",\n    \"precio_unitario\":1342.22,\n    \"codigo_inventario\":\"AsdSfasdfassadfddsfa-2\",\n    \"categoria\":\"Jugos\",\n    \"publicado\":false,\n    \"contenido\":\"Este es el contenido, adfun teto largo\"\n}\n",
+									"raw": "{\n    \"nombre\":\"holaCOmsoeesdstass\",\n    \"descripcion\":\"apasdfasdfaarato paraasdf oficina\",\n    \"precio_unitario\":500.22,\n    \"codigo_inventario\":\"AsdSfasaassdassdasdsddsfa-2\",\n    \"categoria\":\"Jugos\",\n    \"publicado\":true,\n    \"contenido\":\"Este es el contenido, adfun tasdeto largo\"\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -489,6 +541,25 @@
 									"path": [
 										"producto",
 										"siPublicado"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Borrar producto",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/producto/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"producto",
+										"1"
 									]
 								}
 							},
@@ -730,14 +801,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/orden/2",
+									"raw": "localhost:8080/orden/1",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"orden",
-										"2"
+										"1"
 									]
 								}
 							},
@@ -788,34 +859,6 @@
 										"orden",
 										"1",
 										"close"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Borrar orden",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"id\":\"1\",\n    \"fecha_creacion\":\"2020-05-05\",\n    \"usuario\":{\n        \"id\": 1,\n        \"nombre\": \"aaaa\",\n        \"apellido\": \"vvvv\",\n        \"direccion\": \"Las palmas\",\n        \"carritoList\": [],\n        \"fecha_Alta\": \"2020-01-05T03:00:00.000+00:00\"\n    },\n    \"productos\":[\n        {\n            \"id\":\"1\",\n            \"nombre\":\"rapida\",\n            \"descripcion\":\"disponible\",\n            \"precio_unitario\":\"12\",\n            \"código_inventario\":\"asdf\"\n        }\n    ],\n    \"estado\":\"true\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/orden/1",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"orden",
-										"1"
 									]
 								}
 							},
