@@ -41,7 +41,7 @@ public class Usuario {
     @Temporal(TemporalType.DATE)
     private Date fechaCreacion = UsuarioService.creacion();
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="direccion_id", referencedColumnName = "id")
     @JsonIgnoreProperties("usuario")
     private Direccion direccion;
@@ -50,27 +50,36 @@ public class Usuario {
     @JsonIgnoreProperties("usuario")
     private List<Carrito> carritos = new ArrayList<>();
 
+    @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("usuario")
+    private List<Orden> ordenes = new ArrayList<>();
+
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private Rol rol;
 
     @Column(nullable = false,unique = true)
-    @Email()
+    @Email(regexp = ".+@.+\\..+",message = "Provea un email valido")
     private String email;
 
     @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    private Boolean activo = true;
 
     //Getters
     public String getNombre() {return nombre;}
     public String getApellido() {return apellido;}
     public Direccion getDireccion() {return direccion;}
     public List<Carrito> getCarritos() {return carritos;}
+    public List<Orden> getOrdenes() {return ordenes;}
     public Long getId() {return id;}
     public Date getFechaCreacion() {return fechaCreacion;}
     public Rol getRol() {return  this.rol;}
     public String getEmail() { return email;}
     public String pwd() { return password;}
+    public Boolean getActivo() { return activo;}
 
     //Setters
     public void setDireccion(Direccion direccion) {this.direccion = direccion;}
@@ -79,6 +88,6 @@ public class Usuario {
     public void setRol(Rol rol) {this.rol = rol;}
     public void setEmail(String email) { this.email = email;}
     public void setPassword(String password) { this.password = password;}
-
+    public void setCambiarEstado(){ this.activo = !this.activo;}
 
 }

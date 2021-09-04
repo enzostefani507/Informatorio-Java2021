@@ -1,8 +1,11 @@
 package com.informatorio.comercio.service;
 
 import com.informatorio.comercio.domain.Usuario;
+import com.informatorio.comercio.dto.UsuarioCredencialesDto;
 import com.informatorio.comercio.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -19,16 +22,10 @@ public class UsuarioService {
         return Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
     };
 
-    public static Usuario modificarCredenciales(Usuario user, Usuario usuario){
-        user.setPassword(usuario.pwd());
-        user.setEmail(usuario.getEmail());
-        return usuarioRepository.save(user);
-    }
-
-    public static Usuario modificarDatos(Usuario user, Usuario usuario){
+    public static ResponseEntity<?> modificarDatos(Usuario user, Usuario usuario){
         user.setNombre(usuario.getNombre());
         user.setApellido(usuario.getApellido());
         user.setDireccion(usuario.getDireccion());
-        return usuarioRepository.save(user);
+        return new ResponseEntity<>(usuarioRepository.save(user), HttpStatus.OK);
     }
 }
