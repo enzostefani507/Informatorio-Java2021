@@ -1,4 +1,5 @@
 package com.informatorio.comercio.controller;
+import com.informatorio.comercio.domain.Carrito;
 import com.informatorio.comercio.domain.Usuario;
 import com.informatorio.comercio.dto.UsuarioCredencialesDto;
 import com.informatorio.comercio.repository.DireccionRepository;
@@ -14,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.OK;
 
 @RestController()
 public class UsuarioController {
@@ -29,7 +31,7 @@ public class UsuarioController {
         if (usuarioRepository.existsByEmail(usuario.getEmail())){
             return new ResponseEntity<>("Ya existe un usuario registrado con este email.",HttpStatus.CONFLICT);
         }else {
-            return new ResponseEntity<> (usuarioRepository.save(usuario),HttpStatus.OK);
+            return new ResponseEntity<> (usuarioRepository.save(usuario), OK);
         }
     }
 
@@ -44,7 +46,7 @@ public class UsuarioController {
         if (usuario == null){
             return new ResponseEntity<>("El usuario con el id indicado no existe.",HttpStatus.NOT_FOUND);
         }else{
-            return new ResponseEntity<>(usuario,HttpStatus.OK);
+            return new ResponseEntity<>(usuario, OK);
         }
     }
 
@@ -56,10 +58,10 @@ public class UsuarioController {
         }else{
             if (usuario.getOrdenes().size()>=1){
                 usuario.setCambiarEstado();
-                return new ResponseEntity<>("El usuario tiene compras registradas, pero ahora su cuenta esta inactiva.",HttpStatus.OK);
+                return new ResponseEntity<>("El usuario tiene compras registradas, pero ahora su cuenta esta inactiva.", OK);
             }else{
                 usuarioRepository.delete(usuario);
-                return new ResponseEntity<>("El usuario fue eliminado.",HttpStatus.OK);
+                return new ResponseEntity<>("El usuario fue eliminado.", OK);
             }
         }
     }
@@ -73,7 +75,7 @@ public class UsuarioController {
             user.setNombre(usuario.getNombre());
             user.setApellido(usuario.getApellido());
             user.setDireccion(usuario.getDireccion());
-            return new ResponseEntity<>(usuarioRepository.save(user), HttpStatus.OK);
+            return new ResponseEntity<>(usuarioRepository.save(user), OK);
         }
     }
 
@@ -121,5 +123,21 @@ public class UsuarioController {
     @GetMapping(value = "/usuario/buscar/fechaCreacion")
     public List<Usuario> buscarUsuariosPorFecha(@RequestParam  @DateTimeFormat(pattern = "dd.MM.yyyy") Date fecha){
         return usuarioRepository.getByFechaCreacion(fecha);
+    }
+
+    @GetMapping(value = "usuario/{id_usuario}/carrito/detalle")
+    public Object modificarUsuarioCredencialesEmail(@PathVariable("id_usuario") Long id_usuario) {
+        Usuario user = usuarioRepository.findById(id_usuario).orElse(null);
+        if (user == null) {
+            return new ResponseEntity<>("No existe usuario con el id ingresado.", NOT_FOUND);
+        } else {
+            List<Carrito> carritos_del_user = user.getCarritos();
+            if (carritos_del_user.size() >= 1) {
+                Carrito ultimo = carritos_del_user.get(carritos_del_user.size() - 1);
+                return new ResponseEntity<>(ultimo, OK);
+            } else {
+                return new ResponseEntity<>("No tiene carritos registrados.", NOT_FOUND);
+            }
+        }
     }
 }
