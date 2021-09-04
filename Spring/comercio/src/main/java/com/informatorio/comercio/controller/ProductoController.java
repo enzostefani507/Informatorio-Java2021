@@ -3,10 +3,11 @@ import com.informatorio.comercio.domain.Categoria;
 import com.informatorio.comercio.domain.Producto;
 import com.informatorio.comercio.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-import static com.informatorio.comercio.service.ProductoService.modificarDatosProducto;
 
 @RestController()
 public class ProductoController {
@@ -24,8 +25,13 @@ public class ProductoController {
     }
 
     @GetMapping(value = "/producto/{id_producto}")
-    public Producto verProducto(@PathVariable("id_producto") Long id_producto){
-        return productoRepository.getById(id_producto);
+    public Object verProducto(@PathVariable("id_producto") Long id_producto){
+        Producto producto = productoRepository.findById(id_producto).orElse(null);
+        if (producto == null){
+            return new ResponseEntity<>("El producto con el id indicado no existe.", HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity<>(producto,HttpStatus.OK);
+        }
     }
 
     @GetMapping(value = "/producto/buscarComienzo")
@@ -34,9 +40,22 @@ public class ProductoController {
     }
 
     @PutMapping(value = "/producto/{id_producto}")
-    public Producto modificarProducto(@PathVariable("id_producto") Long id_producto, @RequestBody  Producto producto_modificado){
-        Producto producto = productoRepository.getById(id_producto);
-        return modificarDatosProducto(producto ,producto_modificado);
+    public Object modificarProducto(@PathVariable("id_producto") Long id_producto, @RequestBody  Producto producto_modificado){
+        Producto producto = productoRepository.findById(id_producto).orElse(null);
+        if (producto != null){
+            producto.setDescripcion(producto_modificado.getDescripcion());
+            producto.setNombre(producto_modificado.getNombre());
+            producto.setPrecio_unitario(producto_modificado.getPrecio_unitario());
+            producto.setContenido(producto_modificado.getContenido());
+            producto.setPublicado(producto_modificado.getPublicado());
+            producto.setCategoria(producto_modificado.getCategoria());
+            producto.setCodigo_inventario(producto_modificado.getCodigo_inventario());
+            productoRepository.save(producto);
+            return new ResponseEntity<>(producto, HttpStatus.CREATED);
+        }
+        else{
+            return new ResponseEntity<>("El producto con el id indicado no existe.", HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping(value = "/producto/buscarCategoria")
@@ -45,9 +64,14 @@ public class ProductoController {
     }
 
     @DeleteMapping(value = "producto/{id}")
-    public void borrarProducto(@PathVariable("id") Long id){
-        Producto producto = productoRepository.getById(id);
-        productoRepository.delete(producto);
+    public Object borrarProducto(@PathVariable("id") Long id){
+        Producto producto = productoRepository.findById(id).orElse(null);
+        if (producto != null){
+            productoRepository.delete(producto);
+            return new ResponseEntity<>("El producto fue eliminado.",HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>("El producto con el id indicado no existe.", HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping(value = "producto/buscarContiene")

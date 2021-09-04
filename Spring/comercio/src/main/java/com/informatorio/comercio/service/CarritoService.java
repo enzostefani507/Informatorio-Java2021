@@ -9,6 +9,8 @@ import com.informatorio.comercio.repository.DetalleRepository;
 import com.informatorio.comercio.repository.ProductoRepository;
 import com.informatorio.comercio.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -46,13 +48,14 @@ public class CarritoService {
         return true;
     }
 
-    public static List<Detalle> evaluarCerrarCarrito(Carrito carrito){
+    public static Object evaluarCerrarCarrito(Carrito carrito){
         if (carrito.getDetalle().size()>=1) {
             carrito.setEstado(false);
             carritoRepository.save(carrito);
-            return carrito.getDetalle();
+            return new ResponseEntity<> (carrito.getDetalle(), HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>("Su carrito no tiene productos, no se puede cerrar",HttpStatus.CONFLICT);
         }
-        return null;
     }
 
     public static void hacerCarritoComprado(Carrito carrito){
@@ -60,14 +63,22 @@ public class CarritoService {
         carritoRepository.save(carrito);
     }
 
-    public static Detalle evaluarAnadirProducto(Carrito carrito, Long id_producto){
+    public static Object evaluarAnadirProducto(Carrito carrito, Long id_producto){
         if (carrito.getEstado()) {
-            Producto producto = productoRepository.getById(id_producto);
-            Detalle detalle = generarDetalle(producto, carrito);
-            tratarExistenciaProductoEnCarrito(carrito, producto, detalle);
-            return detalle;
+            Producto producto = productoRepository.findById(id_producto).orElse(null);
+            if (producto != null) {
+                //Detalle detalle = generarDetalle(producto, carrito);
+                Detalle detalle = new Detalle();
+                detalle.setProducto(producto);
+                detalle.setCarrito(carrito);
+                tratarExistenciaProductoEnCarrito(carrito, producto, detalle);
+                return detalle;
+            }else{
+                return new ResponseEntity<> ("No existe el producto con el id ingresado",HttpStatus.CONFLICT);
+            }
+        }else{
+            return new ResponseEntity<> ("No se puede añadir, el carrito esta cerrado",HttpStatus.CONFLICT);
         }
-        return null;
     }
 
     public static Detalle evaluarDecrementarProducto(Carrito carrito, Long id_producto){

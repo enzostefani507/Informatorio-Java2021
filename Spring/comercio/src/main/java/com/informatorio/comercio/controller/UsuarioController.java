@@ -13,7 +13,6 @@ import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 
-import static com.informatorio.comercio.service.UsuarioService.modificarDatos;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController()
@@ -26,7 +25,13 @@ public class UsuarioController {
     private UsuarioRepository usuarioRepository;
 
     @PostMapping(value = "/usuario")
-    public Usuario crearUsuario(@RequestBody Usuario usuario){return usuarioRepository.save(usuario);}
+    public Object crearUsuario(@RequestBody Usuario usuario){
+        if (usuarioRepository.existsByEmail(usuario.getEmail())){
+            return new ResponseEntity<>("Ya existe un usuario registrado con este email.",HttpStatus.CONFLICT);
+        }else {
+            return new ResponseEntity<> (usuarioRepository.save(usuario),HttpStatus.OK);
+        }
+    }
 
     @GetMapping(value = "/usuario")
     public List<Usuario> verUsuarios(){
@@ -37,7 +42,7 @@ public class UsuarioController {
     public Object verUsuario(@PathVariable("id") Long id){
         Usuario usuario =  usuarioRepository.findById(id).orElse(null);
         if (usuario == null){
-            return new ResponseEntity<>("El usuario con el id indicado no existe.",HttpStatus.CONFLICT);
+            return new ResponseEntity<>("El usuario con el id indicado no existe.",HttpStatus.NOT_FOUND);
         }else{
             return new ResponseEntity<>(usuario,HttpStatus.OK);
         }
@@ -47,7 +52,7 @@ public class UsuarioController {
     public Object borrarUsuario(@PathVariable("id") Long id){
         Usuario usuario =  usuarioRepository.findById(id).orElse(null);
         if (usuario == null){
-            return new ResponseEntity<>("El usuario con el id indicado no existe.",HttpStatus.CONFLICT);
+            return new ResponseEntity<>("No existe usuario con el id ingresado.",NOT_FOUND);
         }else{
             if (usuario.getOrdenes().size()>=1){
                 usuario.setCambiarEstado();
@@ -60,12 +65,15 @@ public class UsuarioController {
     }
 
     @PutMapping(value = "/usuario/{id}")
-    public ResponseEntity<?> modificarUsuario(@PathVariable("id") Long id, @Valid @RequestBody Usuario usuario){
+    public Object modificarUsuario(@PathVariable("id") Long id, @Valid @RequestBody Usuario usuario){
         Usuario user = usuarioRepository.findById(id).orElse(null);
         if (user == null){
             return new ResponseEntity<>("No existe usuario con el id ingresado.",NOT_FOUND);
         }else{
-            return modificarDatos(user, usuario);
+            user.setNombre(usuario.getNombre());
+            user.setApellido(usuario.getApellido());
+            user.setDireccion(usuario.getDireccion());
+            return new ResponseEntity<>(usuarioRepository.save(user), HttpStatus.OK);
         }
     }
 

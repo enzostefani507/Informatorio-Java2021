@@ -32,7 +32,7 @@ public class Orden {
     private List<Linea> linea = new ArrayList<>();
 
     @Column(nullable = false, updatable = false)
-    private Long carrito_id;
+    private Long carritoId;
 
     @Column(nullable = false,updatable = false)
     @Temporal(TemporalType.DATE)
@@ -59,7 +59,7 @@ public class Orden {
     //Setters
     public void setUsuario(Usuario usuario) {this.usuario = usuario;}
     public void addLinea(Linea linea) {this.linea.add(linea);}
-    public void setCarrito_id(Long carrito_id) {this.carrito_id = carrito_id;}
+    public void setCarritoId(Long carritoId) {this.carritoId = carritoId;}
     public void setEstado(Estado estado) {this.estado = estado;}
     public void setTipo(Tipo tipo) {this.tipo = tipo;}
     public void setNumero(Long numero) {this.numero = numero;}
@@ -74,7 +74,7 @@ public class Orden {
     @JsonIgnore
     public Usuario getUsuario() {return usuario;}
     public List<Linea> getLinea() {return linea;}
-    public Long getCarrito_id() {return carrito_id;}
+    public Long getCarritoId() {return carritoId;}
     public Date getFecha_creacion() {return fecha_creacion;}
     public Tipo getTipo() {return tipo;}
     public Long getNumero() {return numero;}

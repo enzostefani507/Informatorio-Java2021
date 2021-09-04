@@ -11,4 +11,5 @@ import java.util.List;
 public interface OrdenRepository extends JpaRepository<Orden, Long> {
     Orden getById(Long id);
     List<Orden> findByUsuario(Usuario usuario);
+    Orden findByCarritoId(Long id_carrito);
 }

@@ -22,10 +22,4 @@ public class UsuarioService {
         return Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
     };
 
-    public static ResponseEntity<?> modificarDatos(Usuario user, Usuario usuario){
-        user.setNombre(usuario.getNombre());
-        user.setApellido(usuario.getApellido());
-        user.setDireccion(usuario.getDireccion());
-        return new ResponseEntity<>(usuarioRepository.save(user), HttpStatus.OK);
-    }
 }

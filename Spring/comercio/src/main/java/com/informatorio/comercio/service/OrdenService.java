@@ -5,6 +5,8 @@ import com.informatorio.comercio.repository.CarritoRepository;
 import com.informatorio.comercio.repository.OrdenRepository;
 import com.informatorio.comercio.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,28 +44,34 @@ public class OrdenService {
         }
     }
 
-    public static Orden tratarCreacionOrden(Orden orden,Long id_carrito){
-        Carrito carrito = carritoRepository.getById(id_carrito);
-        if (carrito.getEstado() && (carrito.getDetalle().size()>=1)) {
-            orden.setCarrito_id(id_carrito);
-            orden.setEstado(Confirmada);
-            orden.setUsuario(carrito.getUsuario());
-            orden.setObservacion(orden.getObservacion());
-            orden.setNumero(generarNumeroFactura(carrito));
-            cargarLineas(carrito,orden);
-            hacerCarritoComprado(carrito);
-            return ordenRepository.save(orden);
+    public static Object tratarCreacionOrden(Orden orden,Long id_carrito){
+        Carrito carrito = carritoRepository.findById(id_carrito).orElse(null);
+        if (carrito == null){
+            return new ResponseEntity<>("No existe carrito con el id indicado", HttpStatus.NOT_FOUND);
+        }else {
+            if (carrito.getEstado() && (carrito.getDetalle().size() >= 1)) {
+                orden.setCarritoId(id_carrito);
+                orden.setEstado(Confirmada);
+                orden.setUsuario(carrito.getUsuario());
+                orden.setObservacion(orden.getObservacion());
+                orden.setNumero(generarNumeroFactura(carrito));
+                cargarLineas(carrito, orden);
+                hacerCarritoComprado(carrito);
+                return new ResponseEntity<>(ordenRepository.save(orden),HttpStatus.CREATED);
+            }else{
+                return new ResponseEntity<>("Este carrito ya esta cerrado o esta vacio", HttpStatus.CONFLICT);
+            }
         }
-        return null;
     }
 
-    public static Orden tratarCancelarOrden(Orden orden, Long id_usuario){
+    public static Object tratarCancelarOrden(Orden orden, Long id_usuario){
         Usuario usuario = usuarioRepository.getById(id_usuario);
         if ((usuario.getRol()==Comerciante) && (orden.getEstado()==Confirmada)){
             orden.setEstado(Cancelada);
             return ordenRepository.save(orden);
+        }else{
+            return new ResponseEntity<>("Tu usuario no es administrador, o esta no es una orden confirmada", HttpStatus.CONFLICT);
         }
-        return null;
     }
 
 }
